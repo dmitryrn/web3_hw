@@ -126,7 +126,7 @@ export const ImageArea = styled.div`
 export const ProductImage = styled.img`
   width: 100%;
   height: 220px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 `
 

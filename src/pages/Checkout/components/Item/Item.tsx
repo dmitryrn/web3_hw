@@ -31,10 +31,6 @@ function Item({ product }: ItemProps) {
       <ItemDetails>
         <ItemMeta>
           <ItemRow>
-            <Label>ID товара</Label>
-            <ItemValue>{product.product.id}</ItemValue>
-          </ItemRow>
-          <ItemRow>
             <Label>Название</Label>
             <ItemTitle>{product.product.name}</ItemTitle>
           </ItemRow>
