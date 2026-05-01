@@ -60,9 +60,10 @@ export const SecondaryImageFrame = styled.div`
   ${imageFrameStyles}
 `
 
-export const GalleryButton = styled.button`
+export const GalleryButton = styled.button<{ $visible: boolean }>`
   width: 2.5rem;
   min-height: 2.5rem;
+  padding: 0;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   background: #ffffff;
@@ -70,6 +71,8 @@ export const GalleryButton = styled.button`
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
+  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
 
   &:disabled {
     cursor: not-allowed;

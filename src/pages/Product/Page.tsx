@@ -88,11 +88,14 @@ function ProductPage({ products }: ProductPageProps) {
       <Content>
         <ProductLayout>
           <Gallery>
-            {canMoveLeft ? (
-              <GalleryButton type="button" onClick={handlePreviousImages}>
-                &lt;
-              </GalleryButton>
-            ) : null}
+            <GalleryButton
+              type="button"
+              onClick={handlePreviousImages}
+              disabled={!canMoveLeft}
+              $visible={canMoveLeft}
+            >
+              &lt;
+            </GalleryButton>
 
             <ImagesTrack>
               <MainImageFrame>
@@ -114,11 +117,14 @@ function ProductPage({ products }: ProductPageProps) {
               ) : null}
             </ImagesTrack>
 
-            {canMoveRight ? (
-              <GalleryButton type="button" onClick={handleNextImages}>
-                &gt;
-              </GalleryButton>
-            ) : null}
+            <GalleryButton
+              type="button"
+              onClick={handleNextImages}
+              disabled={!canMoveRight}
+              $visible={canMoveRight}
+            >
+              &gt;
+            </GalleryButton>
           </Gallery>
 
           <InfoPanel>
