@@ -19,7 +19,12 @@ export type Product = {
   updated_at: string
 }
 
-const mockProducts = [
+export type CartProduct = {
+  product: Product
+  quantity: number
+}
+
+const catalogueProducts: Product[] = [
   {
     id: 1,
     name: 'Светодиодная лампа H7',
@@ -70,15 +75,20 @@ const mockProducts = [
   },
 ] satisfies Product[]
 
+const cartProducts: CartProduct[] = [
+  { product: catalogueProducts[0], quantity: 20 },
+  { product: catalogueProducts[1], quantity: 50 },
+]
+
 function App() {
   return (
     <BrowserRouter>
       <div className="app-shell">
         <main className="page-content">
           <Routes>
-            <Route path="/" element={<CatalogPage products={mockProducts} />} />
+            <Route path="/" element={<CatalogPage products={catalogueProducts} />} />
             <Route path="/products/:productId" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route path="/cart" element={<CartPage products={cartProducts} />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
           </Routes>

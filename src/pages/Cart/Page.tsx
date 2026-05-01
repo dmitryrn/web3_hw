@@ -1,12 +1,42 @@
+import type { CartProduct } from '../../App'
 import Header from '../../components/Header/Component'
-import { Description, Page, Title } from './styles'
+import CartItem from './components/CartItem/Component'
+import {
+  BackButton,
+  CartList,
+  Content,
+  Footer,
+  OrderButton,
+  Page,
+  Sidebar,
+  Title,
+} from './styles'
 
-function CartPage() {
+type CartPageProps = {
+  products: CartProduct[]
+}
+
+function CartPage({ products }: CartPageProps) {
   return (
     <Page>
       <Header />
       <Title>Корзина</Title>
-      <Description>Заглушка страницы корзины.</Description>
+
+      <Content>
+        <CartList>
+          {products.map((product) => (
+            <CartItem key={product.product.id} product={product} />
+          ))}
+        </CartList>
+
+        <Sidebar>
+          <OrderButton type="button">Создать заказ</OrderButton>
+        </Sidebar>
+      </Content>
+
+      <Footer>
+        <BackButton to="/">Назад</BackButton>
+      </Footer>
     </Page>
   )
 }
