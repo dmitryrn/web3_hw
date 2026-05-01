@@ -10,6 +10,10 @@ export const InfoPanel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  @media (max-width: 360px) {
+    padding: 0.875rem;
+  }
 `
 
 export const ProductTitle = styled.h1`
@@ -17,6 +21,11 @@ export const ProductTitle = styled.h1`
   color: #111827;
   font-size: 2rem;
   line-height: 1.2;
+  overflow-wrap: anywhere;
+
+  @media (max-width: 360px) {
+    font-size: 1.35rem;
+  }
 `
 
 export const Price = styled.div`
@@ -35,6 +44,11 @@ export const QuantityControl = styled.div`
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+
+  @media (max-width: 360px) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 `
 
 export const AddToCartButton = styled(Link)`
@@ -49,6 +63,11 @@ export const AddToCartButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 360px) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
 `
 
 export const QuantityButton = styled.button`
@@ -60,6 +79,10 @@ export const QuantityButton = styled.button`
   color: #111827;
   font-size: 1.25rem;
   cursor: pointer;
+
+  @media (max-width: 360px) {
+    width: 100%;
+  }
 `
 
 export const QuantityValue = styled.div`
@@ -68,4 +91,8 @@ export const QuantityValue = styled.div`
   font-size: 1.15rem;
   font-weight: 600;
   text-align: center;
+
+  @media (max-width: 360px) {
+    min-width: 0;
+  }
 `

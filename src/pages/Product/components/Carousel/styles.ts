@@ -5,15 +5,10 @@ export const Gallery = styled.section`
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.5rem;
   align-items: center;
-`
 
-export const ImagesTrack = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 360px));
-  gap: 1rem;
-
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 360px) {
+    grid-template-columns: 1fr auto auto 1fr;
+    row-gap: 0.75rem;
   }
 `
 
@@ -60,18 +55,55 @@ export const GalleryButton = styled.button<{ $visible: boolean }>`
     align-self: start;
     margin-top: 0.5rem;
   }
+
+  @media (max-width: 360px) {
+    margin-top: 0;
+    align-self: center;
+
+    &:first-child {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    &:last-child {
+      grid-column: 3;
+      grid-row: 2;
+    }
+  }
+`
+
+export const ImagesTrack = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 360px));
+  gap: 1rem;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 360px) {
+    grid-column: 1 / -1;
+  }
 `
 
 export const MainImage = styled.img`
   width: 100%;
   height: 320px;
   object-fit: cover;
+
+  @media (max-width: 360px) {
+    height: 240px;
+  }
 `
 
 export const SecondaryImage = styled.img`
   width: 100%;
   height: 320px;
   object-fit: cover;
+
+  @media (max-width: 360px) {
+    height: 240px;
+  }
 `
 
 export const ImagePlaceholder = styled.div`
@@ -82,4 +114,8 @@ export const ImagePlaceholder = styled.div`
   justify-content: center;
   color: #64748b;
   font-size: 1rem;
+
+  @media (max-width: 360px) {
+    min-height: 240px;
+  }
 `

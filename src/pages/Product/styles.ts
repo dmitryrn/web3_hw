@@ -10,6 +10,10 @@ export const Content = styled.section`
   max-width: 1440px;
   margin: 0 auto;
   padding: 1.5rem;
+
+  @media (max-width: 360px) {
+    padding: 0.875rem;
+  }
 `
 
 export const ProductLayout = styled.section`
