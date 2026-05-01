@@ -14,17 +14,19 @@ import {
 
 type ProductCardProps = {
   product: Product
+  index: number
 }
 
-function ProductCard({ product }: ProductCardProps) {
-  const productLink = `/products/${product.id}`
+function ProductCard({ product, index }: ProductCardProps) {
+  const productLink = `/products/${index}`
+  const firstImage = product.image_urls[0]
 
   return (
     <ProductCardRoot>
       <Link to={productLink}>
         <ImageArea>
-        {product.image_url ? (
-          <ProductImage src={product.image_url} alt={product.name} />
+        {firstImage ? (
+          <ProductImage src={firstImage} alt={product.name} />
         ) : (
           'изображение'
         )}

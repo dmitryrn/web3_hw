@@ -14,7 +14,7 @@ export const Content = styled.section`
 
 export const ProductLayout = styled.section`
   display: grid;
-  grid-template-columns: minmax(220px, 360px) minmax(220px, 360px) minmax(280px, 1fr);
+  grid-template-columns: minmax(220px, 360px) minmax(220px, 360px) 3.5rem minmax(280px, 1fr);
   gap: 1.25rem;
   align-items: start;
   margin-bottom: 1.5rem;
@@ -47,6 +47,29 @@ export const SecondaryImageFrame = styled.div`
   ${imageFrameStyles}
 
   @media (max-width: 800px) {
+    display: none;
+  }
+`
+
+export const RightButton = styled.button`
+  width: 3.5rem;
+  min-height: 3.5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #111827;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    color: #9ca3af;
+    background: #f8fafc;
+  }
+
+  @media (max-width: 1100px) {
     display: none;
   }
 `
@@ -170,4 +193,11 @@ export const BackButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+`
+
+export const ProductNotFound = styled.div`
+  margin-bottom: 1rem;
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 600;
 `

@@ -18,10 +18,12 @@ type ItemProps = {
 }
 
 function Item({ product }: ItemProps) {
+  const firstImage = product.product.image_urls[0]
+
   return (
     <ItemCard>
-      {product.product.image_url ? (
-        <ItemImage src={product.product.image_url} alt={product.product.name} />
+      {firstImage ? (
+        <ItemImage src={firstImage} alt={product.product.name} />
       ) : (
         <ImagePlaceholder>image</ImagePlaceholder>
       )}

@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import type { Product } from '../../App'
 import Header from '../../components/Header/Component'
 import {
@@ -14,20 +16,58 @@ import {
   Page,
   Price,
   ProductLayout,
+  ProductNotFound,
   ProductTitle,
   QuantityButton,
   QuantityControl,
   QuantityValue,
+  RightButton,
   SecondaryImage,
   SecondaryImageFrame,
   Stock,
 } from './styles'
 
 type ProductPageProps = {
-  product: Product
+  products: Product[]
 }
 
-function ProductPage({ product }: ProductPageProps) {
+function ProductPage({ products }: ProductPageProps) {
+  const { productIndex } = useParams()
+  const resolvedIndex = Number(productIndex)
+  const product = Number.isInteger(resolvedIndex) ? products[resolvedIndex] : undefined
+  const [imageOffset, setImageOffset] = useState(0)
+
+  useEffect(() => {
+    setImageOffset(0)
+  }, [productIndex])
+
+  if (!product) {
+    return (
+      <Page>
+        <Header />
+        <Content>
+          <ProductNotFound>Товар не найден.</ProductNotFound>
+          <BackButton to="/">назад</BackButton>
+        </Content>
+      </Page>
+    )
+  }
+
+  const visibleImages = product.image_urls.slice(imageOffset, imageOffset + 2)
+  const mainImage = visibleImages[0]
+  const secondaryImage = visibleImages[1]
+  const canAdvanceImages = product.image_urls.length > 2
+
+  const handleNextImages = () => {
+    if (!canAdvanceImages) {
+      return
+    }
+
+    const nextOffset = imageOffset + 1
+    const maxOffset = Math.max(product.image_urls.length - 2, 0)
+    setImageOffset(nextOffset >= maxOffset ? 0 : nextOffset)
+  }
+
   return (
     <Page>
       <Header />
@@ -35,20 +75,24 @@ function ProductPage({ product }: ProductPageProps) {
       <Content>
         <ProductLayout>
           <MainImageFrame>
-            {product.image_url ? (
-              <MainImage src={product.image_url} alt={product.name} />
+            {mainImage ? (
+              <MainImage src={mainImage} alt={product.name} />
             ) : (
               'image'
             )}
           </MainImageFrame>
 
           <SecondaryImageFrame>
-            {product.image_url ? (
-              <SecondaryImage src={product.image_url} alt={product.name} />
+            {secondaryImage ? (
+              <SecondaryImage src={secondaryImage} alt={product.name} />
             ) : (
               'image'
             )}
           </SecondaryImageFrame>
+
+          <RightButton type="button" onClick={handleNextImages} disabled={!canAdvanceImages}>
+            &gt;
+          </RightButton>
 
           <InfoPanel>
             <ProductTitle>{product.name}</ProductTitle>

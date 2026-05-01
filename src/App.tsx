@@ -12,7 +12,7 @@ export type Product = {
   price: number
   stock: number
   description: string
-  image_url: string | null
+  image_urls: string[]
   compatibility: string | null
   energy_rating: string | null
   created_at: string
@@ -31,7 +31,11 @@ const catalogueProducts: Product[] = [
     price: 120,
     stock: 5000,
     description: 'Светодиодная лампа для головного света.',
-    image_url: 'https://dummyjson.com/image/150/1',
+    image_urls: [
+      'https://dummyjson.com/image/640x420/1',
+      'https://dummyjson.com/image/640x420/2',
+      'https://dummyjson.com/image/640x420/3',
+    ],
     compatibility: 'H7',
     energy_rating: 'A+',
     created_at: '2026-05-01T00:00:00Z',
@@ -43,7 +47,7 @@ const catalogueProducts: Product[] = [
     price: 120,
     stock: 5000,
     description: 'Галогенная лампа для штатных фар.',
-    image_url: 'https://dummyjson.com/image/150/2',
+    image_urls: [],
     compatibility: '12V',
     energy_rating: null,
     created_at: '2026-05-01T00:00:00Z',
@@ -55,7 +59,7 @@ const catalogueProducts: Product[] = [
     price: 120,
     stock: 5000,
     description: 'Набор ламп для освещения салона.',
-    image_url: 'https://dummyjson.com/image/150/3',
+    image_urls: ['https://dummyjson.com/image/640x420/4'],
     compatibility: 'Универсальная',
     energy_rating: 'A',
     created_at: '2026-05-01T00:00:00Z',
@@ -67,7 +71,10 @@ const catalogueProducts: Product[] = [
     price: 120,
     stock: 0,
     description: 'Комплект ламп для противотуманных фар.',
-    image_url: 'https://dummyjson.com/image/150/4',
+    image_urls: [
+      'https://dummyjson.com/image/640x420/5',
+      'https://dummyjson.com/image/640x420/6',
+    ],
     compatibility: 'Универсальная',
     energy_rating: 'A',
     created_at: '2026-05-01T00:00:00Z',
@@ -87,7 +94,7 @@ function App() {
         <main className="page-content">
           <Routes>
             <Route path="/" element={<CatalogPage products={catalogueProducts} />} />
-            <Route path="/products/:productId" element={<ProductPage product={catalogueProducts[0]} />} />
+            <Route path="/products/:productIndex" element={<ProductPage products={catalogueProducts} />} />
             <Route path="/cart" element={<CartPage products={cartProducts} />} />
             <Route path="/checkout" element={<CheckoutPage products={cartProducts} />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />

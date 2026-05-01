@@ -17,10 +17,12 @@ type CartItemProps = {
 }
 
 function CartItem({ product }: CartItemProps) {
+  const firstImage = product.product.image_urls[0]
+
   return (
     <CartItemRoot>
-      {product.product.image_url ? (
-        <ProductImage src={product.product.image_url} alt={product.product.name} />
+      {firstImage ? (
+        <ProductImage src={firstImage} alt={product.product.name} />
       ) : (
         <ImagePlaceholder>image</ImagePlaceholder>
       )}
