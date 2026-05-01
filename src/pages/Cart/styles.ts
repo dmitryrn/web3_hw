@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { breakpoints } from '../../breakpoints'
 
 export const Page = styled.section`
   min-height: 100vh;
@@ -12,37 +13,65 @@ export const Content = styled.div`
   flex: 1;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 0.875rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   min-height: 0;
 
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr;
+  ${breakpoints.sm} {
+    padding: 1rem;
+  }
+
+  ${breakpoints.md} {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  ${breakpoints.lg} {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 1.5rem;
+  }
+
+  ${breakpoints.xl} {
+    padding: 1.5rem;
+    gap: 2rem;
   }
 `
 
 export const CartList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.875rem;
+
+  ${breakpoints.md} {
+    gap: 1rem;
+  }
 `
 
 export const Sidebar = styled.aside`
   width: 100%;
-  padding: 1.25rem;
+  padding: 1rem;
   border: 1px solid #d5d9d9;
   border-radius: 0.75rem;
   background: #ffffff;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
   align-self: stretch;
+
+  ${breakpoints.md} {
+    padding: 1.25rem;
+  }
+
+  ${breakpoints.lg} {
+    position: sticky;
+    top: 1rem;
+  }
 `
 
 export const OrderButton = styled.button`
