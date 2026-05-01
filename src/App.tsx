@@ -89,7 +89,7 @@ function App() {
             <Route path="/" element={<CatalogPage products={catalogueProducts} />} />
             <Route path="/products/:productId" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage products={cartProducts} />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/checkout" element={<CheckoutPage products={cartProducts} />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
           </Routes>
         </main>

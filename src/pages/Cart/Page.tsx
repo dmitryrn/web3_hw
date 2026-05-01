@@ -1,4 +1,5 @@
 import type { CartProduct } from '../../App'
+import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Component'
 import CartItem from './components/CartItem/Component'
 import {
@@ -15,6 +16,8 @@ type CartPageProps = {
 }
 
 function CartPage({ products }: CartPageProps) {
+  const navigate = useNavigate()
+
   return (
     <Page>
       <Header />
@@ -27,7 +30,9 @@ function CartPage({ products }: CartPageProps) {
         </CartList>
 
         <Sidebar>
-          <OrderButton type="button">Создать заказ</OrderButton>
+          <OrderButton type="button" onClick={() => navigate('/checkout')}>
+            Создать заказ
+          </OrderButton>
           <BackButton to="/">Назад</BackButton>
         </Sidebar>
       </Content>

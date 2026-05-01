@@ -1,12 +1,39 @@
+import type { CartProduct } from '../../App'
 import Header from '../../components/Header/Component'
-import { Description, Page, Title } from './styles'
+import CheckoutForm from './components/CheckoutForm/CheckoutForm'
+import Item from './components/Item/Item'
+import {
+  BackButton,
+  Content,
+  OrderList,
+  Page,
+  Sidebar,
+} from './styles'
 
-function CheckoutPage() {
+type CheckoutPageProps = {
+  products: CartProduct[]
+}
+
+function CheckoutPage({ products }: CheckoutPageProps) {
+  const total = products.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
+
   return (
     <Page>
       <Header />
-      <Title>Оформление заказа</Title>
-      <Description>Заглушка страницы оформления заказа.</Description>
+
+      <Content>
+        <OrderList>
+          {products.map((product) => (
+            <Item key={product.product.id} product={product} />
+          ))}
+        </OrderList>
+
+        <Sidebar>
+          <CheckoutForm total={total} />
+
+          <BackButton to="/cart">Назад</BackButton>
+        </Sidebar>
+      </Content>
     </Page>
   )
 }
