@@ -30,9 +30,9 @@ function CartItem({ product }: CartItemProps) {
         <RemoveButton type="button">Удалить</RemoveButton>
       </ItemMeta>
       <QuantityBox>
-        <QuantityAction type="button">+</QuantityAction>
-        <QuantityValue>{product.quantity}</QuantityValue>
         <QuantityAction type="button">-</QuantityAction>
+        <QuantityValue>{product.quantity}</QuantityValue>
+        <QuantityAction type="button">+</QuantityAction>
       </QuantityBox>
       <CartItemPrice>{`${product.product.price * product.quantity} руб.`}</CartItemPrice>
     </CartItemRoot>

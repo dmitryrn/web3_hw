@@ -5,11 +5,9 @@ import {
   BackButton,
   CartList,
   Content,
-  Footer,
   OrderButton,
   Page,
   Sidebar,
-  Title,
 } from './styles'
 
 type CartPageProps = {
@@ -20,7 +18,6 @@ function CartPage({ products }: CartPageProps) {
   return (
     <Page>
       <Header />
-      <Title>Корзина</Title>
 
       <Content>
         <CartList>
@@ -31,12 +28,9 @@ function CartPage({ products }: CartPageProps) {
 
         <Sidebar>
           <OrderButton type="button">Создать заказ</OrderButton>
+          <BackButton to="/">Назад</BackButton>
         </Sidebar>
       </Content>
-
-      <Footer>
-        <BackButton to="/">Назад</BackButton>
-      </Footer>
     </Page>
   )
 }
