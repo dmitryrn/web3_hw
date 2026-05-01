@@ -49,16 +49,41 @@ export const ProductName = styled.div`
 `
 
 export const QuantityBox = styled.div`
-  min-width: 72px;
+  min-width: 108px;
   min-height: 2.5rem;
-  padding: 0 0.85rem;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   background: #ffffff;
   display: inline-flex;
   align-items: center;
+  overflow: hidden;
+`
+
+export const QuantityAction = styled.button`
+  width: 2.25rem;
+  min-height: 2.5rem;
+  border: 0;
+  background: #ffffff;
+  color: #111827;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:first-child {
+    border-right: 1px solid #cbd5e1;
+  }
+
+  &:last-child {
+    border-left: 1px solid #cbd5e1;
+  }
+`
+
+export const QuantityValue = styled.div`
+  min-width: 3rem;
+  padding: 0 0.5rem;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  text-align: center;
   color: #111827;
   font-weight: 600;
 `

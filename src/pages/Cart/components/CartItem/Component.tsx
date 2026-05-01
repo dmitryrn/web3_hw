@@ -6,7 +6,9 @@ import {
   ItemMeta,
   ProductImage,
   ProductName,
+  QuantityAction,
   QuantityBox,
+  QuantityValue,
   RemoveButton,
 } from './styles'
 
@@ -27,7 +29,11 @@ function CartItem({ product }: CartItemProps) {
         <ProductName>{product.product.name}</ProductName>
         <RemoveButton type="button">Удалить</RemoveButton>
       </ItemMeta>
-      <QuantityBox>{`+${product.quantity}-`}</QuantityBox>
+      <QuantityBox>
+        <QuantityAction type="button">+</QuantityAction>
+        <QuantityValue>{product.quantity}</QuantityValue>
+        <QuantityAction type="button">-</QuantityAction>
+      </QuantityBox>
       <CartItemPrice>{`${product.product.price * product.quantity} руб.`}</CartItemPrice>
     </CartItemRoot>
   )
