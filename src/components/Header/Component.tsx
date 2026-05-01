@@ -25,7 +25,7 @@ function Header() {
     <HeaderShell>
       <HeaderInner>
         <BrandBlock>
-          <Brand>Магазин лампочек</Brand>
+          <Brand to="/">Магазин лампочек</Brand>
           <Button to="/">Каталог</Button>
         </BrandBlock>
 

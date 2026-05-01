@@ -32,10 +32,12 @@ export const BrandBlock = styled.div`
   }
 `
 
-export const Brand = styled.div`
+export const Brand = styled(Link)`
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.01em;
+  color: inherit;
+  text-decoration: none;
 `
 
 export const Button = styled(Link)`
