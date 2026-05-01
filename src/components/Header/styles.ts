@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { breakpoints } from '../../breakpoints'
 
 export const Header = styled.header`
   background: #131921;
@@ -10,19 +11,24 @@ export const Header = styled.header`
 export const HeaderInner = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0.875rem 1.5rem;
+  padding: 0.75rem 0.875rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 
-  @media (max-width: 900px) {
-    justify-content: space-between;
+  ${breakpoints.sm} {
+    padding: 0.875rem 1rem;
+    gap: 1rem;
   }
 
-  @media (max-width: 360px) {
-    padding: 0.75rem 0.875rem;
-    gap: 0.75rem;
+  ${breakpoints.md} {
+    padding: 0.875rem 1.25rem;
+  }
+
+  ${breakpoints.xl} {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 `
 
@@ -30,27 +36,30 @@ export const BrandBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  flex-wrap: wrap;
-
-  @media (max-width: 900px) {
-    min-width: 0;
-  }
+  min-width: 0;
 `
 
 export const Brand = styled(Link)`
-  font-size: 1.25rem;
+  min-width: 0;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   color: inherit;
   text-decoration: none;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 
-  @media (max-width: 360px) {
-    font-size: 0.9rem;
-    line-height: 1.2;
+  ${breakpoints.sm} {
+    font-size: 1.05rem;
+  }
+
+  ${breakpoints.md} {
+    font-size: 1.25rem;
   }
 `
 
 export const Button = styled(Link)`
+  display: none;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   background: #232f3e;
@@ -66,13 +75,15 @@ export const Button = styled(Link)`
     background: #2d3d52;
   }
 
-  @media (max-width: 900px) {
-    display: none;
+  ${breakpoints.lg} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 `
 
 export const BurgerButton = styled.button`
-  display: none;
+  display: inline-flex;
   width: 2.75rem;
   height: 2.75rem;
   padding: 0.55rem;
@@ -92,27 +103,21 @@ export const BurgerButton = styled.button`
     background: #f8fafc;
   }
 
-  @media (max-width: 900px) {
-    display: inline-flex;
+  ${breakpoints.lg} {
+    display: none;
     flex-shrink: 0;
-  }
-
-  @media (max-width: 360px) {
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.5rem;
   }
 `
 
 export const MobileNavOverlay = styled.div<{ $open: boolean }>`
-  display: none;
+  display: ${({ $open }) => ($open ? 'block' : 'none')};
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.36);
+  z-index: 20;
 
-  @media (max-width: 900px) {
-    display: ${({ $open }) => ($open ? 'block' : 'none')};
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.36);
-    z-index: 20;
+  ${breakpoints.lg} {
+    display: none;
   }
 `
 
@@ -120,13 +125,18 @@ export const MobileNavPanel = styled.aside<{ $open: boolean }>`
   position: absolute;
   top: 0;
   right: 0;
-  width: min(20rem, 85vw);
+  width: min(20rem, calc(100vw - 1rem));
   min-height: 100vh;
-  padding: 5.25rem 1rem 1rem;
+  padding: 5rem 0.875rem 1rem;
   background: #131921;
   box-shadow: -8px 0 24px rgba(15, 23, 42, 0.28);
   transform: translateX(${({ $open }) => ($open ? '0' : '100%')});
   transition: transform 180ms ease;
+
+  ${breakpoints.sm} {
+    width: min(20rem, 85vw);
+    padding: 5.25rem 1rem 1rem;
+  }
 `
 
 export const MobileNavSection = styled.nav`
@@ -136,12 +146,12 @@ export const MobileNavSection = styled.nav`
 
 export const MobileNavButton = styled(Link)`
   min-height: 3.5rem;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
   border-radius: 999px;
   background: #232f3e;
   border: 1px solid rgba(255, 255, 255, 0.75);
   color: #f8fafc;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
@@ -152,5 +162,10 @@ export const MobileNavButton = styled(Link)`
 
   &:hover {
     background: #2d3d52;
+  }
+
+  ${breakpoints.sm} {
+    padding: 0 1.25rem;
+    font-size: 1.15rem;
   }
 `
