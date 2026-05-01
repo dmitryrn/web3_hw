@@ -48,11 +48,11 @@ function ProductPage({ products }: ProductPageProps) {
 
         <MetaList>
           <DetailRow>
-            <DetailLabel>Socket compatibility:</DetailLabel>
+            <DetailLabel>Совместимость с цоколем:</DetailLabel>
             <span>{product.compatibility ?? '-'}</span>
           </DetailRow>
           <DetailRow>
-            <DetailLabel>Energy rating:</DetailLabel>
+            <DetailLabel>Энергетический класс:</DetailLabel>
             <span>{product.energy_rating ?? '-'}</span>
           </DetailRow>
         </MetaList>

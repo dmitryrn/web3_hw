@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import {
+  EmptyState,
   Gallery,
   GalleryButton,
+  ImageFrame,
   ImagePlaceholder,
   ImagesTrack,
-  MainImage,
-  MainImageFrame,
-  SecondaryImage,
-  SecondaryImageFrame,
+  ProductImage,
 } from './styles'
 
 type CarouselProps = {
@@ -23,11 +22,7 @@ function Carousel({ imageUrls, productName }: CarouselProps) {
   }, [imageUrls])
 
   const visibleImages = imageUrls.slice(imageOffset, imageOffset + 2)
-  const mainImage = visibleImages[0]
-  const secondaryImage = visibleImages[1]
   const hasNoImages = imageUrls.length === 0
-  const hasOneImage = imageUrls.length === 1
-  const hasTwoImages = imageUrls.length === 2
   const canMoveLeft = imageOffset > 0
   const canMoveRight = imageOffset + 2 < imageUrls.length
 
@@ -49,43 +44,39 @@ function Carousel({ imageUrls, productName }: CarouselProps) {
 
   return (
     <Gallery>
-      <GalleryButton
-        type="button"
-        onClick={handlePreviousImages}
-        disabled={!canMoveLeft}
-        $visible={canMoveLeft}
-      >
-        &lt;
-      </GalleryButton>
+      {hasNoImages ? (
+        <EmptyState>
+          <ImagePlaceholder>Нет изображений</ImagePlaceholder>
+        </EmptyState>
+      ) : (
+        <>
+          <GalleryButton
+            type="button"
+            onClick={handlePreviousImages}
+            disabled={!canMoveLeft}
+            $visible={canMoveLeft}
+          >
+            &lt;
+          </GalleryButton>
 
-      <ImagesTrack>
-        <MainImageFrame>
-          {mainImage ? (
-            <MainImage src={mainImage} alt={productName} />
-          ) : (
-            <ImagePlaceholder>Нет изображений</ImagePlaceholder>
-          )}
-        </MainImageFrame>
+          <ImagesTrack>
+            {visibleImages.map((imageUrl, index) => (
+              <ImageFrame key={`${imageUrl}-${imageOffset + index}`}>
+                <ProductImage src={imageUrl} alt={productName} />
+              </ImageFrame>
+            ))}
+          </ImagesTrack>
 
-        {!hasNoImages && !hasOneImage ? (
-          <SecondaryImageFrame>
-            {secondaryImage ? (
-              <SecondaryImage src={secondaryImage} alt={productName} />
-            ) : hasTwoImages ? null : (
-              <ImagePlaceholder>Нет изображений</ImagePlaceholder>
-            )}
-          </SecondaryImageFrame>
-        ) : null}
-      </ImagesTrack>
-
-      <GalleryButton
-        type="button"
-        onClick={handleNextImages}
-        disabled={!canMoveRight}
-        $visible={canMoveRight}
-      >
-        &gt;
-      </GalleryButton>
+          <GalleryButton
+            type="button"
+            onClick={handleNextImages}
+            disabled={!canMoveRight}
+            $visible={canMoveRight}
+          >
+            &gt;
+          </GalleryButton>
+        </>
+      )}
     </Gallery>
   )
 }

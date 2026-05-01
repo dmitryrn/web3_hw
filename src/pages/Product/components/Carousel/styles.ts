@@ -23,11 +23,7 @@ const imageFrameStyles = `
   overflow: hidden;
 `
 
-export const MainImageFrame = styled.div`
-  ${imageFrameStyles}
-`
-
-export const SecondaryImageFrame = styled.div`
+export const ImageFrame = styled.div`
   ${imageFrameStyles}
 `
 
@@ -86,17 +82,20 @@ export const ImagesTrack = styled.div`
   }
 `
 
-export const MainImage = styled.img`
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
+export const EmptyState = styled.div`
+  grid-column: 1 / -1;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 360px) {
-    height: 240px;
+    min-height: 240px;
+    grid-column: 1 / -1;
   }
 `
 
-export const SecondaryImage = styled.img`
+export const ProductImage = styled.img`
   width: 100%;
   height: 320px;
   object-fit: cover;
@@ -107,15 +106,9 @@ export const SecondaryImage = styled.img`
 `
 
 export const ImagePlaceholder = styled.div`
-  width: 100%;
-  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #64748b;
   font-size: 1rem;
-
-  @media (max-width: 360px) {
-    min-height: 240px;
-  }
 `
