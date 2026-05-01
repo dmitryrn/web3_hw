@@ -8,7 +8,7 @@ import {
   MainImageFrame,
   SecondaryImage,
   SecondaryImageFrame,
-} from './Carousel.styles'
+} from './styles'
 
 type CarouselProps = {
   imageUrls: string[]

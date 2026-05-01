@@ -7,7 +7,7 @@ import {
   QuantityControl,
   QuantityValue,
   Stock,
-} from './ProductCard.styles'
+} from './styles'
 
 type ProductCardProps = {
   name: string
