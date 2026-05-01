@@ -113,8 +113,15 @@ export const ImageArea = styled.div`
   font-size: 1rem;
 `
 
+export const ProductImage = styled.img`
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+`
+
 export const CardBody = styled.div`
-  padding: 1rem;
+  padding: 0.75rem;
 `
 
 export const ProductName = styled.h3`
@@ -126,7 +133,7 @@ export const ProductName = styled.h3`
 `
 
 export const Stock = styled.div<{ $available?: boolean }>`
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.65rem;
   font-size: 0.9rem;
   color: ${({ $available }) => ($available ? '#007600' : '#b91c1c')};
 `

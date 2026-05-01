@@ -1,7 +1,7 @@
+import type { Product } from '../../App'
 import Header from '../../components/Header/Component'
 import Filters from './components/Filters'
 import ProductGrid from './components/ProductGrid'
-import type { Product } from './components/ProductCard'
 import {
   Body,
   Main,
