@@ -1,4 +1,4 @@
-import type { Product } from '../../App'
+import type { Product } from '../../mockData'
 import Header from '../../components/Header/Component'
 import Filters from './components/Filters'
 import ProductGrid from './components/ProductGrid'

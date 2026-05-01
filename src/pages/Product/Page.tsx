@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import type { Product } from '../../App'
+import type { Product } from '../../mockData'
 import Header from '../../components/Header/Component'
 import Carousel from './components/Carousel/Carousel'
 import ProductCard from './components/ProductCard/ProductCard'

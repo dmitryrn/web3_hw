@@ -1,4 +1,4 @@
-import type { Product } from '../../../App'
+import type { Product } from '../../../mockData'
 import { Link } from 'react-router-dom'
 import {
   BuyButton,

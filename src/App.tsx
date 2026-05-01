@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { cartProducts, catalogueProducts } from './mockData'
 import CartPage from './pages/Cart/Page'
 import CatalogPage from './pages/Catalog/Page'
 import CheckoutPage from './pages/Checkout/Page'

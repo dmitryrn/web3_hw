@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../App'
+import type { CartProduct } from '../../mockData'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Component'
 import CartItem from './components/CartItem/Component'

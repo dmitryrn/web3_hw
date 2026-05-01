@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../App'
+import type { CartProduct } from '../../mockData'
 import Header from '../../components/Header/Component'
 import CheckoutForm from './components/CheckoutForm/CheckoutForm'
 import Item from './components/Item/Item'

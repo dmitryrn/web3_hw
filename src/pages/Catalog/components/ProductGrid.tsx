@@ -1,4 +1,4 @@
-import type { Product } from '../../../App'
+import type { Product } from '../../../mockData'
 import { ProductsGrid } from '../styles'
 import ProductCard from './ProductCard'
 
