@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../../../App'
+import type { CartProduct } from '../../../../mockData'
 import {
   ImagePlaceholder,
   ItemCard,
