@@ -9,7 +9,11 @@ import {
   DetailLabel,
   DetailRow,
   Details,
+  Gallery,
+  GalleryButton,
   InfoPanel,
+  ImagePlaceholder,
+  ImagesTrack,
   MainImage,
   MainImageFrame,
   MetaList,
@@ -21,7 +25,6 @@ import {
   QuantityButton,
   QuantityControl,
   QuantityValue,
-  RightButton,
   SecondaryImage,
   SecondaryImageFrame,
   Stock,
@@ -56,16 +59,26 @@ function ProductPage({ products }: ProductPageProps) {
   const visibleImages = product.image_urls.slice(imageOffset, imageOffset + 2)
   const mainImage = visibleImages[0]
   const secondaryImage = visibleImages[1]
-  const canAdvanceImages = product.image_urls.length > 2
+  const hasNoImages = product.image_urls.length === 0
+  const hasOneImage = product.image_urls.length === 1
+  const hasTwoImages = product.image_urls.length === 2
+  const canMoveLeft = imageOffset > 0
+  const canMoveRight = imageOffset + 2 < product.image_urls.length
 
-  const handleNextImages = () => {
-    if (!canAdvanceImages) {
+  const handlePreviousImages = () => {
+    if (!canMoveLeft) {
       return
     }
 
-    const nextOffset = imageOffset + 1
-    const maxOffset = Math.max(product.image_urls.length - 2, 0)
-    setImageOffset(nextOffset >= maxOffset ? 0 : nextOffset)
+    setImageOffset((currentOffset) => currentOffset - 1)
+  }
+
+  const handleNextImages = () => {
+    if (!canMoveRight) {
+      return
+    }
+
+    setImageOffset((currentOffset) => currentOffset + 1)
   }
 
   return (
@@ -74,25 +87,39 @@ function ProductPage({ products }: ProductPageProps) {
 
       <Content>
         <ProductLayout>
-          <MainImageFrame>
-            {mainImage ? (
-              <MainImage src={mainImage} alt={product.name} />
-            ) : (
-              'image'
-            )}
-          </MainImageFrame>
+          <Gallery>
+            {canMoveLeft ? (
+              <GalleryButton type="button" onClick={handlePreviousImages}>
+                &lt;
+              </GalleryButton>
+            ) : null}
 
-          <SecondaryImageFrame>
-            {secondaryImage ? (
-              <SecondaryImage src={secondaryImage} alt={product.name} />
-            ) : (
-              'image'
-            )}
-          </SecondaryImageFrame>
+            <ImagesTrack>
+              <MainImageFrame>
+                {mainImage ? (
+                  <MainImage src={mainImage} alt={product.name} />
+                ) : (
+                  <ImagePlaceholder>Нет изображений</ImagePlaceholder>
+                )}
+              </MainImageFrame>
 
-          <RightButton type="button" onClick={handleNextImages} disabled={!canAdvanceImages}>
-            &gt;
-          </RightButton>
+              {!hasNoImages && !hasOneImage ? (
+                <SecondaryImageFrame>
+                  {secondaryImage ? (
+                    <SecondaryImage src={secondaryImage} alt={product.name} />
+                  ) : hasTwoImages ? null : (
+                    <ImagePlaceholder>Нет изображений</ImagePlaceholder>
+                  )}
+                </SecondaryImageFrame>
+              ) : null}
+            </ImagesTrack>
+
+            {canMoveRight ? (
+              <GalleryButton type="button" onClick={handleNextImages}>
+                &gt;
+              </GalleryButton>
+            ) : null}
+          </Gallery>
 
           <InfoPanel>
             <ProductTitle>{product.name}</ProductTitle>

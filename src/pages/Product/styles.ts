@@ -14,14 +14,27 @@ export const Content = styled.section`
 
 export const ProductLayout = styled.section`
   display: grid;
-  grid-template-columns: minmax(220px, 360px) minmax(220px, 360px) 3.5rem minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
   gap: 1.25rem;
   align-items: start;
   margin-bottom: 1.5rem;
 
   @media (max-width: 1100px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
+`
+
+export const Gallery = styled.section`
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: center;
+`
+
+export const ImagesTrack = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 360px));
+  gap: 1rem;
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
@@ -45,22 +58,17 @@ export const MainImageFrame = styled.div`
 
 export const SecondaryImageFrame = styled.div`
   ${imageFrameStyles}
-
-  @media (max-width: 800px) {
-    display: none;
-  }
 `
 
-export const RightButton = styled.button`
-  width: 3.5rem;
-  min-height: 3.5rem;
-  margin-top: auto;
-  margin-bottom: auto;
+export const GalleryButton = styled.button`
+  width: 2.5rem;
+  min-height: 2.5rem;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   background: #ffffff;
   color: #111827;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1;
   cursor: pointer;
 
   &:disabled {
@@ -69,8 +77,9 @@ export const RightButton = styled.button`
     background: #f8fafc;
   }
 
-  @media (max-width: 1100px) {
-    display: none;
+  @media (max-width: 800px) {
+    align-self: start;
+    margin-top: 0.5rem;
   }
 `
 
@@ -84,6 +93,16 @@ export const SecondaryImage = styled.img`
   width: 100%;
   height: 320px;
   object-fit: cover;
+`
+
+export const ImagePlaceholder = styled.div`
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 1rem;
 `
 
 export const InfoPanel = styled.div`
