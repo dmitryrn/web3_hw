@@ -48,7 +48,7 @@ function ProductPage({ products }: ProductPageProps) {
 
         <MetaList>
           <DetailRow>
-            <DetailLabel>Совместимость с цоколем:</DetailLabel>
+            <DetailLabel>Совместимость:</DetailLabel>
             <span>{product.compatibility ?? '-'}</span>
           </DetailRow>
           <DetailRow>

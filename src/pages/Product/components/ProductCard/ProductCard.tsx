@@ -24,9 +24,9 @@ function ProductCard({ name, price, stock }: ProductCardProps) {
 
       <QuantityControl>
         <AddToCartButton to="/cart">Добавить в корзину</AddToCartButton>
-        <QuantityButton type="button">+</QuantityButton>
-        <QuantityValue>1</QuantityValue>
         <QuantityButton type="button">-</QuantityButton>
+        <QuantityValue>1</QuantityValue>
+        <QuantityButton type="button">+</QuantityButton>
       </QuantityControl>
     </InfoPanel>
   )
