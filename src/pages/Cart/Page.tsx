@@ -1,7 +1,7 @@
 import type { CartProduct } from '../../mockData'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Component'
-import CartItem from './components/CartItem/Component'
+import OrderProductItem from '../../components/OrderProductItem/Component'
 import {
   BackButton,
   CartList,
@@ -25,7 +25,13 @@ function CartPage({ products }: CartPageProps) {
       <Content>
         <CartList>
           {products.map((product) => (
-            <CartItem key={product.product.id} product={product} />
+            <OrderProductItem
+              key={product.product.id}
+              product={product}
+              productLink={`/products/${product.product.id - 1}`}
+              showQuantityControls
+              showRemoveButton
+            />
           ))}
         </CartList>
 

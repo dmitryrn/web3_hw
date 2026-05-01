@@ -1,7 +1,7 @@
 import type { CartProduct } from '../../mockData'
 import Header from '../../components/Header/Component'
+import OrderProductItem from '../../components/OrderProductItem/Component'
 import CheckoutForm from './components/CheckoutForm/CheckoutForm'
-import Item from './components/Item/Item'
 import {
   BackButton,
   Content,
@@ -24,7 +24,11 @@ function CheckoutPage({ products }: CheckoutPageProps) {
       <Content>
         <OrderList>
           {products.map((product) => (
-            <Item key={product.product.id} product={product} />
+            <OrderProductItem
+              key={product.product.id}
+              product={product}
+              productLink={`/products/${product.product.id - 1}`}
+            />
           ))}
         </OrderList>
 
