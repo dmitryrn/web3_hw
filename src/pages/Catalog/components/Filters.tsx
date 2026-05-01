@@ -16,6 +16,11 @@ function Filters() {
         <SidebarTitle>Фильтры</SidebarTitle>
 
         <FilterGroup>
+          <FilterLabel htmlFor="name">Название товара</FilterLabel>
+          <FilterInput id="name" placeholder="Введите название товара" />
+        </FilterGroup>
+
+        <FilterGroup>
           <FilterLabel htmlFor="price">Цена</FilterLabel>
           <FilterInput id="price" placeholder="до 500" />
         </FilterGroup>

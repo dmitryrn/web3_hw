@@ -28,7 +28,7 @@ function ProductCard({ product, index }: ProductCardProps) {
         {firstImage ? (
           <ProductImage src={firstImage} alt={product.name} />
         ) : (
-          'изображение'
+          'Нет изображения'
         )}
         </ImageArea>
       </Link>
