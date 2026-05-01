@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Лампочкин
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Учебное React-приложение интернет-магазина лампочек.
 
-Currently, two official plugins are available:
+## Что есть в приложении сейчас
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- SPA на `React + TypeScript + Vite`
+- стили на `styled-components`
+- клиентская маршрутизация на `react-router-dom`
+- адаптивная верстка с единым набором брейкпоинтов
+- моковые данные товаров и корзины без реального API
 
-## React Compiler
+## Страницы
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `Каталог`
+- `Карточка товара`
+- `Корзина`
+- `Оформление заказа`
+- `Подтверждение заказа`
 
-## Expanding the ESLint configuration
+## Маршрутизация
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Сейчас настроены такие маршруты:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `/`
+- `/products/:productIndex`
+- `/cart`
+- `/checkout`
+- `/order-confirmation`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Переходы между страницами уже подключены в интерфейсе:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- из каталога в карточку товара
+- из хедера в каталог и корзину
+- из корзины к оформлению заказа
+- из оформления назад в корзину
+- из подтверждения заказа назад в каталог
+
+## Адаптивность
+
+В проекте используется единый файл брейкпоинтов: `src/breakpoints.ts`.
+
+Текущие брейкпоинты:
+
+- `640px`
+- `768px`
+- `1024px`
+- `1280px`
+
+Интерфейс корректно работает начиная с ширины `320px`.
+
+## Запуск
+
+Установка зависимостей:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Запуск в dev-режиме:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
