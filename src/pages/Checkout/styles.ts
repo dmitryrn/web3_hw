@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { breakpoints } from '../../breakpoints'
 
 export const Page = styled.section`
   min-height: 100vh;
@@ -13,26 +14,48 @@ export const Content = styled.div`
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 0.875rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 370px;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
 
-  @media (max-width: 1080px) {
-    grid-template-columns: 1fr;
+  ${breakpoints.sm} {
+    padding: 1rem;
+  }
+
+  ${breakpoints.md} {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  ${breakpoints.lg} {
+    grid-template-columns: minmax(0, 1fr) 370px;
+    gap: 1.5rem;
+  }
+
+  ${breakpoints.xl} {
+    padding: 1.5rem;
   }
 `
 
 export const OrderList = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.875rem;
+
+  ${breakpoints.md} {
+    gap: 1rem;
+  }
 `
 
 export const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  ${breakpoints.lg} {
+    align-self: start;
+  }
 `
 
 export const BackButton = styled(Link)`

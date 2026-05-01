@@ -18,6 +18,7 @@ type CarouselProps = {
 
 function Carousel({ imageUrls, productName }: CarouselProps) {
   const [imageOffset, setImageOffset] = useState(0)
+
   const [visibleImageCount, setVisibleImageCount] = useState(() => {
     if (typeof window === 'undefined') {
       return 1

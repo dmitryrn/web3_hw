@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { breakpoints } from '../../../../breakpoints'
 
 export const CheckoutCard = styled.section`
-  padding: 1.25rem;
+  padding: 1rem;
   border: 1px solid #d5d9d9;
   border-radius: 0.75rem;
   background: #ffffff;
@@ -11,7 +12,11 @@ export const CheckoutCard = styled.section`
   flex-direction: column;
   gap: 1rem;
 
-  @media (min-width: 1081px) {
+  ${breakpoints.md} {
+    padding: 1.25rem;
+  }
+
+  ${breakpoints.lg} {
     position: sticky;
     top: 1rem;
   }
@@ -20,7 +25,11 @@ export const CheckoutCard = styled.section`
 export const SectionTitle = styled.h1`
   margin: 0;
   color: #111827;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
+
+  ${breakpoints.md} {
+    font-size: 1.5rem;
+  }
 `
 
 export const SummaryCard = styled.div`
@@ -30,9 +39,16 @@ export const SummaryCard = styled.div`
 
 export const SummaryRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.35rem;
+
+  ${breakpoints.sm} {
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+  }
 `
 
 export const SummaryLabel = styled.div`
@@ -42,18 +58,34 @@ export const SummaryLabel = styled.div`
 
 export const SummaryValue = styled.div`
   color: #111827;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
+
+  ${breakpoints.md} {
+    font-size: 1.5rem;
+  }
 `
 
 export const FormGrid = styled.div`
   display: grid;
   gap: 0.85rem;
+
+  ${breakpoints.md} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `
 
 export const FieldGroup = styled.div`
   display: grid;
   gap: 0.45rem;
+
+  &:first-child,
+  &:nth-child(2),
+  &:nth-child(3) {
+    ${breakpoints.md} {
+      grid-column: 1 / -1;
+    }
+  }
 `
 
 export const FieldLabel = styled.label`
