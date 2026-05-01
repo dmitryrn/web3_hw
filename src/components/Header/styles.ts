@@ -19,6 +19,11 @@ export const HeaderInner = styled.div`
   @media (max-width: 900px) {
     justify-content: space-between;
   }
+
+  @media (max-width: 360px) {
+    padding: 0.75rem 0.875rem;
+    gap: 0.75rem;
+  }
 `
 
 export const BrandBlock = styled.div`
@@ -38,6 +43,11 @@ export const Brand = styled(Link)`
   letter-spacing: 0.01em;
   color: inherit;
   text-decoration: none;
+
+  @media (max-width: 360px) {
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
 `
 
 export const Button = styled(Link)`
@@ -85,6 +95,12 @@ export const BurgerButton = styled.button`
   @media (max-width: 900px) {
     display: inline-flex;
     flex-shrink: 0;
+  }
+
+  @media (max-width: 360px) {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
   }
 `
 

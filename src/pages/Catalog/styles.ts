@@ -19,6 +19,11 @@ export const Body = styled.div`
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 360px) {
+    padding: 0.875rem;
+    gap: 0.875rem;
+  }
 `
 
 export const Sidebar = styled.aside``
@@ -30,6 +35,10 @@ export const SidebarCard = styled.div`
   border: 1px solid #d5d9d9;
   border-radius: 0.75rem;
   background: #ffffff;
+
+  @media (max-width: 360px) {
+    padding: 0.875rem;
+  }
 `
 
 export const SidebarTitle = styled.h2`
@@ -144,6 +153,11 @@ export const CardFooter = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+
+  @media (max-width: 360px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `
 
 export const Price = styled.div`
@@ -174,6 +188,11 @@ export const BuyButton = styled(Link)`
     color: #6b7280;
     cursor: not-allowed;
   }
+
+  @media (max-width: 360px) {
+    min-width: 0;
+    width: 100%;
+  }
 `
 
 export const Pagination = styled.div`
@@ -182,6 +201,7 @@ export const Pagination = styled.div`
   justify-content: center;
   gap: 0.5rem;
   padding: 1rem 0 2rem;
+  flex-wrap: wrap;
 `
 
 export const PageButton = styled.button`

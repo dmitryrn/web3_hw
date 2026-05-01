@@ -30,13 +30,13 @@ function Filters() {
         </FilterGroup>
 
         <FilterGroup>
-          <FilterLabel htmlFor="category">Категория</FilterLabel>
-          <FilterSelect id="category" defaultValue="all">
-            <option value="all">Все категории</option>
-            <option value="headlights">Фары</option>
-            <option value="interior">Салон</option>
-            <option value="fog">Противотуманные</option>
-          </FilterSelect>
+          <FilterLabel htmlFor="compatibility">Совместимость</FilterLabel>
+          <FilterInput id="compatibility" placeholder="Например, H7" />
+        </FilterGroup>
+
+        <FilterGroup>
+          <FilterLabel htmlFor="energy-rating">Энергетический класс</FilterLabel>
+          <FilterInput id="energy-rating" placeholder="Например, A+" />
         </FilterGroup>
 
         <ApplyButton type="button">Применить фильтры</ApplyButton>
