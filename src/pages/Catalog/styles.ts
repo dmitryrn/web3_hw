@@ -85,41 +85,6 @@ export const Main = styled.main`
   gap: 1rem;
 `
 
-export const Toolbar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid #d5d9d9;
-  border-radius: 0.75rem;
-  background: #ffffff;
-
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: stretch;
-  }
-`
-
-export const ResultsText = styled.div`
-  color: #475569;
-  font-size: 0.95rem;
-`
-
-export const SortSelect = styled.select`
-  width: 220px;
-  min-height: 2.5rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  padding: 0 0.75rem;
-  background: #ffffff;
-  color: #111827;
-
-  @media (max-width: 640px) {
-    width: 100%;
-  }
-`
-
 export const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -2,7 +2,6 @@ import Header from '../../components/Header/Component'
 import Filters from './components/Filters'
 import ProductGrid from './components/ProductGrid'
 import type { Product } from './components/ProductCard'
-import Toolbar from './components/Toolbar'
 import {
   Body,
   Main,
@@ -25,8 +24,6 @@ function CatalogPage({ products }: CatalogPageProps) {
         <Filters />
 
         <Main>
-          <Toolbar />
-
           <ProductGrid products={products} />
 
           <Pagination>
