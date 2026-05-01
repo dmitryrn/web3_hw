@@ -17,8 +17,7 @@ export const HeaderInner = styled.div`
   gap: 1rem;
 
   @media (max-width: 900px) {
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
   }
 `
 
@@ -27,6 +26,10 @@ export const BrandBlock = styled.div`
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+
+  @media (max-width: 900px) {
+    min-width: 0;
+  }
 `
 
 export const Brand = styled.div`
@@ -52,6 +55,84 @@ export const Button = styled(Link)`
   }
 
   @media (max-width: 900px) {
+    display: none;
+  }
+`
+
+export const BurgerButton = styled.button`
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 0.75rem;
+  background: #232f3e;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.28rem;
+
+  span {
     width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background: #f8fafc;
+  }
+
+  @media (max-width: 900px) {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+`
+
+export const MobileNavOverlay = styled.div<{ $open: boolean }>`
+  display: none;
+
+  @media (max-width: 900px) {
+    display: ${({ $open }) => ($open ? 'block' : 'none')};
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.36);
+    z-index: 20;
+  }
+`
+
+export const MobileNavPanel = styled.aside<{ $open: boolean }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(20rem, 85vw);
+  min-height: 100vh;
+  padding: 5.25rem 1rem 1rem;
+  background: #131921;
+  box-shadow: -8px 0 24px rgba(15, 23, 42, 0.28);
+  transform: translateX(${({ $open }) => ($open ? '0' : '100%')});
+  transition: transform 180ms ease;
+`
+
+export const MobileNavSection = styled.nav`
+  display: grid;
+  gap: 0.875rem;
+`
+
+export const MobileNavButton = styled(Link)`
+  min-height: 3.5rem;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  background: #232f3e;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: #f8fafc;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &:hover {
+    background: #2d3d52;
   }
 `
