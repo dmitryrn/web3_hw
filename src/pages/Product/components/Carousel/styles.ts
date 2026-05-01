@@ -1,14 +1,11 @@
 import styled from 'styled-components'
+import { productBreakpoints } from '../../breakpoints'
 
 export const Gallery = styled.section`
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 0.5rem;
-  align-items: center;
+  position: relative;
 
-  @media (max-width: 360px) {
-    grid-template-columns: 1fr auto auto 1fr;
-    row-gap: 0.75rem;
+  ${productBreakpoints.md} {
+    padding: 0 0.25rem;
   }
 `
 
@@ -28,18 +25,23 @@ export const ImageFrame = styled.div`
 `
 
 export const GalleryButton = styled.button<{ $visible: boolean }>`
+  position: absolute;
+  top: 50%;
+  z-index: 1;
   width: 2.5rem;
   min-height: 2.5rem;
   padding: 0;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.92);
   color: #111827;
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
+  transform: translateY(-50%);
   visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
   pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.14);
 
   &:disabled {
     cursor: not-allowed;
@@ -47,61 +49,62 @@ export const GalleryButton = styled.button<{ $visible: boolean }>`
     background: #f8fafc;
   }
 
-  @media (max-width: 800px) {
-    align-self: start;
-    margin-top: 0.5rem;
+  &:first-child {
+    left: 0.5rem;
   }
 
-  @media (max-width: 360px) {
-    margin-top: 0;
-    align-self: center;
+  &:last-child {
+    right: 0.5rem;
+  }
 
+  ${productBreakpoints.md} {
     &:first-child {
-      grid-column: 2;
-      grid-row: 2;
+      left: 0.75rem;
     }
 
     &:last-child {
-      grid-column: 3;
-      grid-row: 2;
+      right: 0.75rem;
     }
   }
 `
 
 export const ImagesTrack = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 360px));
+  grid-template-columns: 1fr;
   gap: 1rem;
 
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (max-width: 360px) {
-    grid-column: 1 / -1;
+  ${productBreakpoints.md} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `
 
 export const EmptyState = styled.div`
   grid-column: 1 / -1;
-  min-height: 320px;
+  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 360px) {
-    min-height: 240px;
-    grid-column: 1 / -1;
+  ${productBreakpoints.md} {
+    min-height: 280px;
+  }
+
+  ${productBreakpoints.lg} {
+    min-height: 320px;
   }
 `
 
 export const ProductImage = styled.img`
   width: 100%;
-  height: 320px;
+  height: 240px;
   object-fit: contain;
 
-  @media (max-width: 360px) {
-    height: 240px;
+  ${productBreakpoints.md} {
+    height: 280px;
+  }
+
+  ${productBreakpoints.lg} {
+    height: 320px;
   }
 `
 
