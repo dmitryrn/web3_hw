@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { productBreakpoints } from '../../breakpoints'
+import { breakpoints } from '../../../../breakpoints'
 
 export const Gallery = styled.section`
   position: relative;
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     padding: 0 0.25rem;
   }
 `
@@ -57,7 +57,7 @@ export const GalleryButton = styled.button<{ $visible: boolean }>`
     right: 0.5rem;
   }
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     &:first-child {
       left: 0.75rem;
     }
@@ -73,7 +73,7 @@ export const ImagesTrack = styled.div`
   grid-template-columns: 1fr;
   gap: 1rem;
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `
@@ -85,11 +85,11 @@ export const EmptyState = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     min-height: 280px;
   }
 
-  ${productBreakpoints.lg} {
+  ${breakpoints.lg} {
     min-height: 320px;
   }
 `
@@ -99,11 +99,11 @@ export const ProductImage = styled.img`
   height: 240px;
   object-fit: contain;
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     height: 280px;
   }
 
-  ${productBreakpoints.lg} {
+  ${breakpoints.lg} {
     height: 320px;
   }
 `

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { productBreakpoints } from './breakpoints'
+import { breakpoints } from '../../breakpoints'
 
 export const Page = styled.section`
   min-height: 100vh;
@@ -12,15 +12,15 @@ export const Content = styled.section`
   margin: 0 auto;
   padding: 0.875rem;
 
-  ${productBreakpoints.sm} {
+  ${breakpoints.sm} {
     padding: 1rem;
   }
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     padding: 1.25rem;
   }
 
-  ${productBreakpoints.lg} {
+  ${breakpoints.lg} {
     padding: 1.5rem;
   }
 `
@@ -32,11 +32,11 @@ export const ProductLayout = styled.section`
   align-items: start;
   margin-bottom: 1.5rem;
 
-  ${productBreakpoints.lg} {
+  ${breakpoints.lg} {
     grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
   }
 
-  ${productBreakpoints.xl} {
+  ${breakpoints.xl} {
     grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
   }
 `
@@ -65,11 +65,11 @@ export const Description = styled.p`
   font-size: 1rem;
   line-height: 1.6;
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     font-size: 1.05rem;
   }
 
-  ${productBreakpoints.lg} {
+  ${breakpoints.lg} {
     font-size: 1.1rem;
     line-height: 1.7;
   }

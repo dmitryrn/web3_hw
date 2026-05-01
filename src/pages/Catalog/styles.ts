@@ -1,7 +1,6 @@
-
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-
+import { breakpoints } from '../../breakpoints'
 
 export const Page = styled.section`
   min-height: 100vh;
@@ -11,40 +10,61 @@ export const Page = styled.section`
 export const Body = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 0.875rem;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.875rem;
 
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr;
+  ${breakpoints.sm} {
+    padding: 1rem;
+    gap: 1rem;
   }
 
-  @media (max-width: 360px) {
-    padding: 0.875rem;
-    gap: 0.875rem;
+  ${breakpoints.md} {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  ${breakpoints.lg} {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  ${breakpoints.xl} {
+    padding: 1.5rem;
   }
 `
 
 export const Sidebar = styled.aside``
 
 export const SidebarCard = styled.div`
-  position: sticky;
-  top: 1rem;
-  padding: 1.25rem;
+  padding: 0.875rem;
   border: 1px solid #d5d9d9;
   border-radius: 0.75rem;
   background: #ffffff;
 
-  @media (max-width: 360px) {
-    padding: 0.875rem;
+  ${breakpoints.sm} {
+    padding: 1rem;
+  }
+
+  ${breakpoints.md} {
+    padding: 1.25rem;
+  }
+
+  ${breakpoints.lg} {
+    position: sticky;
+    top: 1rem;
   }
 `
 
 export const SidebarTitle = styled.h2`
   margin: 0 0 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #0f172a;
+
+  ${breakpoints.md} {
+    font-size: 1.1rem;
+  }
 `
 
 export const FilterGroup = styled.div`
@@ -93,15 +113,27 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  ${breakpoints.md} {
+    gap: 1.25rem;
+  }
 `
 
 export const ProductsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.875rem;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
+  ${breakpoints.sm} {
+    gap: 1rem;
+  }
+
+  ${breakpoints.md} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  ${breakpoints.xl} {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 `
 
@@ -111,35 +143,56 @@ export const ProductCard = styled.article`
   background: #ffffff;
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
 `
 
 export const ImageArea = styled.div`
-  min-height: 220px;
+  min-height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   color: #64748b;
   font-size: 1rem;
+
+  ${breakpoints.sm} {
+    min-height: 220px;
+  }
 `
 
 export const ProductImage = styled.img`
   width: 100%;
-  height: 220px;
+  height: 180px;
   object-fit: contain;
   display: block;
+
+  ${breakpoints.sm} {
+    height: 220px;
+  }
 `
 
 export const CardBody = styled.div`
-  padding: 0.75rem;
+  padding: 0.875rem;
+
+  ${breakpoints.md} {
+    padding: 1rem;
+  }
 `
 
 export const ProductName = styled.h3`
   margin: 0 0 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.4;
   font-weight: 600;
   color: #0f172a;
+  overflow-wrap: anywhere;
+
+  ${breakpoints.md} {
+    font-size: 1.05rem;
+  }
 `
 
 export const Stock = styled.div<{ $available?: boolean }>`
@@ -150,24 +203,31 @@ export const Stock = styled.div<{ $available?: boolean }>`
 
 export const CardFooter = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
 
-  @media (max-width: 360px) {
-    flex-direction: column;
-    align-items: stretch;
+  ${breakpoints.sm} {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 `
 
 export const Price = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #111827;
+
+  ${breakpoints.md} {
+    font-size: 1.5rem;
+  }
 `
 
 export const BuyButton = styled(Link)`
-  min-width: 150px;
+  min-width: 0;
+  width: 100%;
   min-height: 2.7rem;
   border: 1px solid #f3a847;
   border-radius: 999px;
@@ -175,10 +235,10 @@ export const BuyButton = styled(Link)`
   background: #ffd814;
   color: #111827;
   font-weight: 600;
-   text-decoration: none;
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 
   &[aria-disabled='true'] {
@@ -189,9 +249,9 @@ export const BuyButton = styled(Link)`
     cursor: not-allowed;
   }
 
-  @media (max-width: 360px) {
-    min-width: 0;
-    width: 100%;
+  ${breakpoints.sm} {
+    width: auto;
+    min-width: 150px;
   }
 `
 
@@ -202,16 +262,24 @@ export const Pagination = styled.div`
   gap: 0.5rem;
   padding: 1rem 0 2rem;
   flex-wrap: wrap;
+
+  ${breakpoints.md} {
+    gap: 0.75rem;
+  }
 `
 
 export const PageButton = styled.button`
   min-height: 2.5rem;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
-  padding: 0 1rem;
+  padding: 0 0.875rem;
   background: #ffffff;
   color: #111827;
   cursor: pointer;
+
+  ${breakpoints.sm} {
+    padding: 0 1rem;
+  }
 `
 
 export const PageIndicator = styled.span<{ $active?: boolean }>`

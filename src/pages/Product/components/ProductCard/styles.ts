@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { productBreakpoints } from '../../breakpoints'
+import { breakpoints } from '../../../../breakpoints'
 
 export const InfoPanel = styled.div`
   min-height: 320px;
@@ -12,7 +12,7 @@ export const InfoPanel = styled.div`
   flex-direction: column;
   gap: 0.75rem;
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     padding: 1rem;
   }
 `
@@ -24,15 +24,15 @@ export const ProductTitle = styled.h1`
   line-height: 1.2;
   overflow-wrap: anywhere;
 
-  ${productBreakpoints.sm} {
+  ${breakpoints.sm} {
     font-size: 1.5rem;
   }
 
-  ${productBreakpoints.md} {
+  ${breakpoints.md} {
     font-size: 1.75rem;
   }
 
-  ${productBreakpoints.lg} {
+  ${breakpoints.lg} {
     font-size: 2rem;
   }
 `
@@ -54,7 +54,7 @@ export const QuantityControl = styled.div`
   gap: 0.75rem;
   align-items: center;
 
-  ${productBreakpoints.sm} {
+  ${breakpoints.sm} {
     display: flex;
     flex-wrap: wrap;
   }
@@ -75,7 +75,7 @@ export const AddToCartButton = styled(Link)`
   grid-column: 1 / -1;
   width: 100%;
 
-  ${productBreakpoints.sm} {
+  ${breakpoints.sm} {
     width: auto;
   }
 `
@@ -90,7 +90,7 @@ export const QuantityButton = styled.button`
   font-size: 1.25rem;
   cursor: pointer;
 
-  ${productBreakpoints.sm} {
+  ${breakpoints.sm} {
     width: 2.75rem;
   }
 `
