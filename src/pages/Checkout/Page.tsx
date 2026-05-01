@@ -4,7 +4,7 @@ import { Description, Page, Title } from './styles'
 function CheckoutPage() {
   return (
     <Page>
-      <Header sectionLabel="Оформление заказа" />
+      <Header />
       <Title>Оформление заказа</Title>
       <Description>Заглушка страницы оформления заказа.</Description>
     </Page>

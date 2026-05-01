@@ -1,39 +1,24 @@
+import { useLocation } from 'react-router-dom'
 import {
+  Button,
   Brand,
   BrandBlock,
-  CartButton,
   Header as HeaderShell,
   HeaderInner,
-  HeaderSearch,
-  SearchAction,
-  SearchInput,
-  SectionTag,
 } from './styles'
 
-type MarketplaceHeaderProps = {
-  sectionLabel: string
-  showSearch?: boolean
-}
+function Header() {
+  const { pathname } = useLocation()
 
-function Header({ sectionLabel, showSearch = false }: MarketplaceHeaderProps) {
   return (
     <HeaderShell>
       <HeaderInner>
         <BrandBlock>
           <Brand>Магазин лампочек</Brand>
-          <SectionTag>{sectionLabel}</SectionTag>
+          <Button to="/">Каталог</Button>
         </BrandBlock>
 
-        {showSearch ? (
-          <HeaderSearch>
-            <SearchInput type="search" placeholder="Поиск ламп и запчастей" />
-            <SearchAction type="button">Найти</SearchAction>
-          </HeaderSearch>
-        ) : (
-          <div />
-        )}
-
-        <CartButton type="button">Корзина</CartButton>
+        {pathname !== '/cart' ? <Button to="/cart">Корзина</Button> : null}
       </HeaderInner>
     </HeaderShell>
   )

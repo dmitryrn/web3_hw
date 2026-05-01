@@ -4,7 +4,7 @@ import { Description, Page, Title } from './styles'
 function OrderConfirmationPage() {
   return (
     <Page>
-      <Header sectionLabel="Подтверждение заказа" />
+      <Header />
       <Title>Подтверждение заказа</Title>
       <Description>Заглушка страницы подтверждения заказа.</Description>
     </Page>

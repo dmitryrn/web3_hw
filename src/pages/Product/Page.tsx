@@ -4,7 +4,7 @@ import { Description, Page, Title } from './styles'
 function ProductPage() {
   return (
     <Page>
-      <Header sectionLabel="Товар" />
+      <Header />
       <Title>Товар</Title>
       <Description>Заглушка страницы товара.</Description>
     </Page>

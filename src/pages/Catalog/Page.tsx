@@ -19,7 +19,7 @@ type CatalogPageProps = {
 function CatalogPage({ products }: CatalogPageProps) {
   return (
     <Page>
-      <Header sectionLabel="Каталог" showSearch />
+      <Header />
 
       <Body>
         <Filters />

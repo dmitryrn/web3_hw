@@ -4,7 +4,7 @@ import { Description, Page, Title } from './styles'
 function CartPage() {
   return (
     <Page>
-      <Header sectionLabel="Корзина" />
+      <Header />
       <Title>Корзина</Title>
       <Description>Заглушка страницы корзины.</Description>
     </Page>
