@@ -105,6 +105,7 @@ export const ItemLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  justify-self: start;
 `
 
 export const QuantityBox = styled.div`
@@ -116,6 +117,7 @@ export const QuantityBox = styled.div`
   display: inline-flex;
   align-items: center;
   overflow: hidden;
+  justify-self: start;
 `
 
 export const QuantityAction = styled.button`
@@ -154,8 +156,10 @@ export const ItemPrice = styled.div`
   font-size: 1.6rem;
   font-weight: 700;
   text-align: right;
+  justify-self: end;
 
   @media (max-width: 960px) {
     text-align: left;
+    justify-self: start;
   }
 `
