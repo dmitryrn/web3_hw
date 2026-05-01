@@ -1,4 +1,5 @@
 import type { Product } from '../../../App'
+import { Link } from 'react-router-dom'
 import {
   BuyButton,
   CardBody,
@@ -16,15 +17,19 @@ type ProductCardProps = {
 }
 
 function ProductCard({ product }: ProductCardProps) {
+  const productLink = `/products/${product.id}`
+
   return (
     <ProductCardRoot>
-      <ImageArea>
+      <Link to={productLink}>
+        <ImageArea>
         {product.image_url ? (
           <ProductImage src={product.image_url} alt={product.name} />
         ) : (
           'изображение'
         )}
-      </ImageArea>
+        </ImageArea>
+      </Link>
       <CardBody>
         <ProductName>{product.name}</ProductName>
         <Stock $available={product.stock > 0}>
@@ -32,7 +37,7 @@ function ProductCard({ product }: ProductCardProps) {
         </Stock>
         <CardFooter>
           <Price>{`${product.price} руб.`}</Price>
-          <BuyButton type="button" disabled={product.stock === 0}>
+          <BuyButton to={productLink} aria-disabled={product.stock === 0}>
             {product.stock > 0 ? 'Купить' : 'Нет в наличии'}
           </BuyButton>
         </CardFooter>

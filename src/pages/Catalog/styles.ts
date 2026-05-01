@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 
@@ -151,7 +152,7 @@ export const Price = styled.div`
   color: #111827;
 `
 
-export const BuyButton = styled.button`
+export const BuyButton = styled(Link)`
   min-width: 150px;
   min-height: 2.7rem;
   border: 1px solid #f3a847;
@@ -160,9 +161,14 @@ export const BuyButton = styled.button`
   background: #ffd814;
   color: #111827;
   font-weight: 600;
+   text-decoration: none;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
   cursor: pointer;
 
-  &:disabled {
+  &[aria-disabled='true'] {
+    pointer-events: none;
     border-color: #d1d5db;
     background: #e5e7eb;
     color: #6b7280;

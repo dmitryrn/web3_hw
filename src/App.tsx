@@ -87,7 +87,7 @@ function App() {
         <main className="page-content">
           <Routes>
             <Route path="/" element={<CatalogPage products={catalogueProducts} />} />
-            <Route path="/products/:productId" element={<ProductPage />} />
+            <Route path="/products/:productId" element={<ProductPage product={catalogueProducts[0]} />} />
             <Route path="/cart" element={<CartPage products={cartProducts} />} />
             <Route path="/checkout" element={<CheckoutPage products={cartProducts} />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
