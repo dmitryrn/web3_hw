@@ -35,10 +35,6 @@ function Item({ product }: ItemProps) {
             <ItemTitle>{product.product.name}</ItemTitle>
           </ItemRow>
           <ItemRow>
-            <Label>Цена</Label>
-            <ItemValue>{`${product.product.price} руб.`}</ItemValue>
-          </ItemRow>
-          <ItemRow>
             <Label>Количество</Label>
             <ItemValue>{product.quantity}</ItemValue>
           </ItemRow>
