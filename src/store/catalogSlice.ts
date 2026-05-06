@@ -1,31 +1,50 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Product } from '../models/product'
 
+export const CATALOG_PAGE_SIZE = 12
+
 type CatalogState = {
   products: Product[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null
+  page: number
+  hasNextPage: boolean
 }
 
 const initialState: CatalogState = {
   products: [],
   status: 'idle',
   error: null,
+  page: 1,
+  hasNextPage: false,
 }
 
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
 
-export const fetchProducts = createAsyncThunk<Product[], void, { rejectValue: string }>(
+type FetchProductsResult = {
+  products: Product[]
+  hasNextPage: boolean
+}
+
+export const fetchProducts = createAsyncThunk<FetchProductsResult, number, { rejectValue: string }>(
   'catalog/fetchProducts',
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${apiBaseUrl}/products`)
+      const offset = (page - 1) * CATALOG_PAGE_SIZE
+      const response = await fetch(
+        `${apiBaseUrl}/products?limit=${CATALOG_PAGE_SIZE}&offset=${offset}`,
+      )
 
       if (!response.ok) {
         return rejectWithValue(`Failed to fetch products: ${response.status}`)
       }
 
-      return (await response.json()) as Product[]
+      const products = (await response.json()) as Product[]
+
+      return {
+        products,
+        hasNextPage: products.length === CATALOG_PAGE_SIZE,
+      }
     } catch {
       return rejectWithValue('Failed to fetch products')
     }
@@ -35,7 +54,16 @@ export const fetchProducts = createAsyncThunk<Product[], void, { rejectValue: st
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
-  reducers: {},
+  reducers: {
+    goToPreviousPage: (state) => {
+      state.page = Math.max(1, state.page - 1)
+    },
+    goToNextPage: (state) => {
+      if (state.hasNextPage) {
+        state.page += 1
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -44,13 +72,17 @@ const catalogSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.products = action.payload
+        state.products = action.payload.products
+        state.hasNextPage = action.payload.hasNextPage
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.payload ?? 'Failed to fetch products'
+        state.hasNextPage = false
       })
   },
 })
+
+export const { goToNextPage, goToPreviousPage } = catalogSlice.actions
 
 export default catalogSlice.reducer

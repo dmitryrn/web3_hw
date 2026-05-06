@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Header from '../../components/Header/Component'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { fetchProducts } from '../../store/catalogSlice'
+import { fetchProducts, goToNextPage, goToPreviousPage } from '../../store/catalogSlice'
 import Filters from './components/Filters'
 import ProductGrid from './components/ProductGrid'
 import {
@@ -16,13 +16,11 @@ import {
 
 function CatalogPage() {
   const dispatch = useAppDispatch()
-  const { products, status, error } = useAppSelector((state) => state.catalog)
+  const { products, status, error, page, hasNextPage } = useAppSelector((state) => state.catalog)
 
   useEffect(() => {
-    if (status === 'idle') {
-      void dispatch(fetchProducts())
-    }
-  }, [dispatch, status])
+    void dispatch(fetchProducts(page))
+  }, [dispatch, page])
 
   return (
     <Page>
@@ -40,11 +38,21 @@ function CatalogPage() {
           {products.length > 0 ? <ProductGrid products={products} /> : null}
 
           <Pagination>
-            <PageButton type="button">Назад</PageButton>
-            <PageIndicator>1</PageIndicator>
-            <PageIndicator $active>2</PageIndicator>
-            <PageIndicator>3</PageIndicator>
-            <PageButton type="button">Далее</PageButton>
+            <PageButton
+              type="button"
+              onClick={() => dispatch(goToPreviousPage())}
+              disabled={page === 1 || status === 'loading'}
+            >
+              Назад
+            </PageButton>
+            <PageIndicator $active>{page}</PageIndicator>
+            <PageButton
+              type="button"
+              onClick={() => dispatch(goToNextPage())}
+              disabled={!hasNextPage || status === 'loading'}
+            >
+              Далее
+            </PageButton>
           </Pagination>
         </Main>
       </Body>

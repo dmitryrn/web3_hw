@@ -285,6 +285,11 @@ export const PageButton = styled.button`
   color: #111827;
   cursor: pointer;
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
   ${breakpoints.sm} {
     padding: 0 1rem;
   }
