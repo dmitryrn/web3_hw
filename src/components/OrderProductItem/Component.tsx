@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../mockData'
+import type { CartProduct } from '../../models/product'
 import {
   ImagePlaceholder,
   ItemCard,
@@ -29,7 +29,7 @@ function OrderProductItem({
   showQuantityControls = false,
   showRemoveButton = false,
 }: OrderProductItemProps) {
-  const firstImage = product.product.image_urls[0]
+  const firstImage = product.product.images[0]?.image_url
 
   return (
     <ItemCard>

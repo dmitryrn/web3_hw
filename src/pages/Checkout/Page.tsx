@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../mockData'
+import type { CartProduct } from '../../models/product'
 import Header from '../../components/Header/Component'
 import OrderProductItem from '../../components/OrderProductItem/Component'
 import CheckoutForm from './components/CheckoutForm/CheckoutForm'
@@ -27,7 +27,7 @@ function CheckoutPage({ products }: CheckoutPageProps) {
             <OrderProductItem
               key={product.product.id}
               product={product}
-              productLink={`/products/${product.product.id - 1}`}
+              productLink={`/products/${product.product.id}`}
             />
           ))}
         </OrderList>

@@ -13,8 +13,8 @@ function App() {
       <div className="app-shell">
         <main className="page-content">
           <Routes>
-            <Route path="/" element={<CatalogPage products={catalogueProducts} />} />
-            <Route path="/products/:productIndex" element={<ProductPage products={catalogueProducts} />} />
+            <Route path="/" element={<CatalogPage />} />
+            <Route path="/products/:productId" element={<ProductPage products={catalogueProducts} />} />
             <Route path="/cart" element={<CartPage products={cartProducts} />} />
             <Route path="/checkout" element={<CheckoutPage products={cartProducts} />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />

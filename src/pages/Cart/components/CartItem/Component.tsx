@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../../../mockData'
+import type { CartProduct } from '../../../../models/product'
 import {
   CartItem as CartItemRoot,
   CartItemPrice,
@@ -17,7 +17,7 @@ type CartItemProps = {
 }
 
 function CartItem({ product }: CartItemProps) {
-  const firstImage = product.product.image_urls[0]
+  const firstImage = product.product.images[0]?.image_url
 
   return (
     <CartItemRoot>

@@ -1,4 +1,4 @@
-import type { Product } from '../../../mockData'
+import type { Product } from '../../../models/product'
 import { ProductsGrid } from '../styles'
 import ProductCard from './ProductCard'
 
@@ -9,8 +9,8 @@ type ProductGridProps = {
 function ProductGrid({ products }: ProductGridProps) {
   return (
     <ProductsGrid>
-      {products.map((product, index) => (
-        <ProductCard key={product.id} product={product} index={index} />
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </ProductsGrid>
   )

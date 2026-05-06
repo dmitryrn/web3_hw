@@ -1,20 +1,4 @@
-export type Product = {
-  id: number
-  name: string
-  price: number
-  stock: number
-  description: string
-  image_urls: string[]
-  compatibility: string | null
-  energy_rating: string | null
-  created_at: string
-  updated_at: string
-}
-
-export type CartProduct = {
-  product: Product
-  quantity: number
-}
+import type { CartProduct, Product } from './models/product'
 
 export const catalogueProducts: Product[] = [
   {
@@ -23,15 +7,33 @@ export const catalogueProducts: Product[] = [
     price: 120,
     stock: 5000,
     description: 'Светодиодная лампа для головного света.',
-    image_urls: [
-      'https://cataas.com/cat/0F0IKAPOdWiE755P?position=center',
-      'https://cataas.com/cat/0GC9MRUAqxhBzPyA?position=center',
-      'https://cataas.com/cat/0mstmOIucwiN80jb?position=center',
-    ],
     compatibility: 'H7',
     energy_rating: 'A+',
     created_at: '2026-05-01T00:00:00Z',
     updated_at: '2026-05-01T00:00:00Z',
+    images: [
+      {
+        id: 1,
+        product_id: 1,
+        image_url: 'https://cataas.com/cat/0F0IKAPOdWiE755P?position=center',
+        sort_order: 0,
+        created_at: '2026-05-01T00:00:00Z',
+      },
+      {
+        id: 2,
+        product_id: 1,
+        image_url: 'https://cataas.com/cat/0GC9MRUAqxhBzPyA?position=center',
+        sort_order: 1,
+        created_at: '2026-05-01T00:00:00Z',
+      },
+      {
+        id: 3,
+        product_id: 1,
+        image_url: 'https://cataas.com/cat/0mstmOIucwiN80jb?position=center',
+        sort_order: 2,
+        created_at: '2026-05-01T00:00:00Z',
+      },
+    ],
   },
   {
     id: 2,
@@ -39,11 +41,11 @@ export const catalogueProducts: Product[] = [
     price: 120,
     stock: 5000,
     description: 'Галогенная лампа для штатных фар.',
-    image_urls: [],
     compatibility: '12V',
     energy_rating: null,
     created_at: '2026-05-01T00:00:00Z',
     updated_at: '2026-05-01T00:00:00Z',
+    images: [],
   },
   {
     id: 3,
@@ -51,11 +53,19 @@ export const catalogueProducts: Product[] = [
     price: 120,
     stock: 5000,
     description: 'Набор ламп для освещения салона.',
-    image_urls: ['https://cataas.com/cat/0RU7ZkgzyvWv8UJG?position=center'],
     compatibility: 'Универсальная',
     energy_rating: 'A',
     created_at: '2026-05-01T00:00:00Z',
     updated_at: '2026-05-01T00:00:00Z',
+    images: [
+      {
+        id: 4,
+        product_id: 3,
+        image_url: 'https://cataas.com/cat/0RU7ZkgzyvWv8UJG?position=center',
+        sort_order: 0,
+        created_at: '2026-05-01T00:00:00Z',
+      },
+    ],
   },
   {
     id: 4,
@@ -63,14 +73,26 @@ export const catalogueProducts: Product[] = [
     price: 120,
     stock: 0,
     description: 'Комплект ламп для противотуманных фар.',
-    image_urls: [
-      'https://cataas.com/cat/0ztFbDrgDV2K7yJ1?position=center',
-      'https://cataas.com/cat/1bJraW0IwSPm3MVd?position=center',
-    ],
     compatibility: 'Универсальная',
     energy_rating: 'A',
     created_at: '2026-05-01T00:00:00Z',
     updated_at: '2026-05-01T00:00:00Z',
+    images: [
+      {
+        id: 5,
+        product_id: 4,
+        image_url: 'https://cataas.com/cat/0ztFbDrgDV2K7yJ1?position=center',
+        sort_order: 0,
+        created_at: '2026-05-01T00:00:00Z',
+      },
+      {
+        id: 6,
+        product_id: 4,
+        image_url: 'https://cataas.com/cat/1bJraW0IwSPm3MVd?position=center',
+        sort_order: 1,
+        created_at: '2026-05-01T00:00:00Z',
+      },
+    ],
   },
 ] satisfies Product[]
 

@@ -119,6 +119,14 @@ export const Main = styled.main`
   }
 `
 
+export const CatalogMessage = styled.div`
+  padding: 1rem;
+  border: 1px solid #d5d9d9;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #374151;
+`
+
 export const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: minmax(0, 1fr);

@@ -1,4 +1,4 @@
-import type { Product } from '../../../mockData'
+import type { Product } from '../../../models/product'
 import { Link } from 'react-router-dom'
 import {
   BuyButton,
@@ -14,12 +14,11 @@ import {
 
 type ProductCardProps = {
   product: Product
-  index: number
 }
 
-function ProductCard({ product, index }: ProductCardProps) {
-  const productLink = `/products/${index}`
-  const firstImage = product.image_urls[0]
+function ProductCard({ product }: ProductCardProps) {
+  const productLink = `/products/${product.id}`
+  const firstImage = product.images[0]?.image_url
 
   return (
     <ProductCardRoot>

@@ -1,4 +1,4 @@
-import type { CartProduct } from '../../mockData'
+import type { CartProduct } from '../../models/product'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Component'
 import OrderProductItem from '../../components/OrderProductItem/Component'
@@ -28,7 +28,7 @@ function CartPage({ products }: CartPageProps) {
             <OrderProductItem
               key={product.product.id}
               product={product}
-              productLink={`/products/${product.product.id - 1}`}
+              productLink={`/products/${product.product.id}`}
               showQuantityControls
               showRemoveButton
             />

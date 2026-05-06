@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import type { Product } from '../../mockData'
+import type { Product } from '../../models/product'
 import Header from '../../components/Header/Component'
 import Carousel from './components/Carousel/Carousel'
 import ProductCard from './components/ProductCard/ProductCard'
@@ -20,9 +20,11 @@ type ProductPageProps = {
 }
 
 function ProductPage({ products }: ProductPageProps) {
-  const { productIndex } = useParams()
-  const resolvedIndex = Number(productIndex)
-  const product = Number.isInteger(resolvedIndex) ? products[resolvedIndex] : undefined
+  const { productId } = useParams()
+  const resolvedId = Number(productId)
+  const product = Number.isInteger(resolvedId)
+    ? products.find((item) => item.id === resolvedId)
+    : undefined
 
   if (!product) {
     return (
@@ -42,7 +44,7 @@ function ProductPage({ products }: ProductPageProps) {
 
       <Content>
         <ProductLayout>
-          <Carousel imageUrls={product.image_urls} productName={product.name} />
+          <Carousel imageUrls={product.images.map((image) => image.image_url)} productName={product.name} />
           <ProductCard name={product.name} price={product.price} stock={product.stock} />
         </ProductLayout>
 
