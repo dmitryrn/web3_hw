@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import api from '../api/api'
+import type { ProductsParams } from '../api/api'
 import type { Product } from '../models/product'
-import { apiBaseUrl } from './api'
 
 export const CATALOG_PAGE_SIZE = 12
 
@@ -49,32 +50,17 @@ export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProducts
   async ({ page, search, maxPrice, inStock, compatibility, energyRating }, { rejectWithValue }) => {
     try {
       const offset = (page - 1) * CATALOG_PAGE_SIZE
-      const params = new URLSearchParams({
-        limit: String(CATALOG_PAGE_SIZE),
-        offset: String(offset),
-      })
-
-      if (search.trim()) {
-        params.set('search', search.trim())
+      const params: ProductsParams = {
+        limit: CATALOG_PAGE_SIZE,
+        offset,
+        search: search.trim() || undefined,
+        maxPrice: maxPrice.trim() || undefined,
+        inStock: inStock === 'in-stock' || undefined,
+        compatibility: compatibility.trim() || undefined,
+        energyRating: energyRating.trim() || undefined,
       }
 
-      if (maxPrice.trim()) {
-        params.set('max_price', maxPrice.trim())
-      }
-
-      if (compatibility.trim()) {
-        params.set('compatibility', compatibility.trim())
-      }
-
-      if (energyRating.trim()) {
-        params.set('energy_rating', energyRating.trim())
-      }
-
-      if (inStock === 'in-stock') {
-        params.set('in_stock', 'true')
-      }
-
-      const response = await fetch(`${apiBaseUrl}/products?${params.toString()}`)
+      const response = await api.products(params)
 
       if (!response.ok) {
         return rejectWithValue(`Failed to fetch products: ${response.status}`)

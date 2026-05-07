@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { CartProduct, Product } from '../models/product'
-import { apiBaseUrl } from '../store/api'
+import api from '../api/api'
 import { useAppSelector } from '../store/hooks'
 
 type UseCartProductsResult = {
@@ -34,11 +34,7 @@ function useCartProducts(): UseCartProductsResult {
 
       try {
         const responses = await Promise.all(
-          productIds.map((productId) =>
-            fetch(`${apiBaseUrl}/products/${productId}`, {
-              signal: abortController.signal,
-            }),
-          ),
+          productIds.map((productId) => api.productById(productId, abortController)),
         )
 
         if (responses.some((response) => !response.ok)) {
