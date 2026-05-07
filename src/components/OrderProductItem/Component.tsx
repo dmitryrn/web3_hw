@@ -33,6 +33,7 @@ function OrderProductItem({
 }: OrderProductItemProps) {
   const dispatch = useAppDispatch()
   const firstImage = product.product.images[0]?.image_url
+  const isAtStockLimit = product.quantity >= product.product.stock
 
   const handleRemove = () => {
     dispatch(removeFromCart(product.product.id))
@@ -43,6 +44,10 @@ function OrderProductItem({
   }
 
   const handleIncreaseQuantity = () => {
+    if (isAtStockLimit) {
+      return
+    }
+
     dispatch(incrementCartItem(product.product.id))
   }
 
@@ -77,7 +82,7 @@ function OrderProductItem({
               -
             </QuantityAction>
             <QuantityValue>{product.quantity}</QuantityValue>
-            <QuantityAction type="button" onClick={handleIncreaseQuantity}>
+            <QuantityAction type="button" onClick={handleIncreaseQuantity} disabled={isAtStockLimit}>
               +
             </QuantityAction>
           </QuantityBox>
