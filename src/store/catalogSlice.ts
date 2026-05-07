@@ -9,26 +9,14 @@ type CatalogState = {
   products: Product[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null
-  page: number
   hasNextPage: boolean
-  search: string
-  maxPrice: string
-  inStock: 'all' | 'in-stock'
-  compatibility: string
-  energyRating: string
 }
 
 const initialState: CatalogState = {
   products: [],
   status: 'idle',
   error: null,
-  page: 1,
   hasNextPage: false,
-  search: '',
-  maxPrice: '',
-  inStock: 'all',
-  compatibility: '',
-  energyRating: '',
 }
 
 type FetchProductsResult = {
@@ -81,30 +69,7 @@ export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProducts
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
-  reducers: {
-    goToPage: (state, action: { payload: number }) => {
-      state.page = Math.max(1, action.payload)
-    },
-    setFilters: (
-      state,
-      action: {
-        payload: {
-          search: string
-          maxPrice: string
-          inStock: 'all' | 'in-stock'
-          compatibility: string
-          energyRating: string
-        }
-      },
-    ) => {
-      state.search = action.payload.search.trim()
-      state.maxPrice = action.payload.maxPrice.trim()
-      state.inStock = action.payload.inStock
-      state.compatibility = action.payload.compatibility.trim()
-      state.energyRating = action.payload.energyRating.trim()
-      state.page = 1
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -123,7 +88,5 @@ const catalogSlice = createSlice({
       })
   },
 })
-
-export const { goToPage, setFilters } = catalogSlice.actions
 
 export default catalogSlice.reducer

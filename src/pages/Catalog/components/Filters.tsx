@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { setFilters } from '../../../store/catalogSlice'
+import { useSearchParams } from 'react-router-dom'
 import {
   ApplyButton,
   FilterGroup,
@@ -13,9 +12,25 @@ import {
   SidebarTitle,
 } from '../styles'
 
+type CatalogFilters = {
+  search: string
+  maxPrice: string
+  inStock: 'all' | 'in-stock'
+  compatibility: string
+  energyRating: string
+}
+
+const parseCatalogFilters = (searchParams: URLSearchParams): CatalogFilters => ({
+  search: searchParams.get('search')?.trim() ?? '',
+  maxPrice: searchParams.get('maxPrice')?.trim() ?? '',
+  inStock: searchParams.get('inStock') === 'in-stock' ? 'in-stock' : 'all',
+  compatibility: searchParams.get('compatibility')?.trim() ?? '',
+  energyRating: searchParams.get('energyRating')?.trim() ?? '',
+})
+
 function Filters() {
-  const dispatch = useAppDispatch()
-  const { search, maxPrice, inStock, compatibility, energyRating } = useAppSelector((state) => state.catalog)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { search, maxPrice, inStock, compatibility, energyRating } = parseCatalogFilters(searchParams)
   const [draftSearch, setDraftSearch] = useState(search)
   const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice)
   const [draftInStock, setDraftInStock] = useState(inStock)
@@ -32,15 +47,49 @@ function Filters() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    dispatch(
-      setFilters({
-        search: draftSearch,
-        maxPrice: draftMaxPrice,
-        inStock: draftInStock,
-        compatibility: draftCompatibility,
-        energyRating: draftEnergyRating,
-      }),
-    )
+
+    const nextParams = new URLSearchParams(searchParams)
+    const nextFilters = {
+      search: draftSearch.trim(),
+      maxPrice: draftMaxPrice.trim(),
+      inStock: draftInStock,
+      compatibility: draftCompatibility.trim(),
+      energyRating: draftEnergyRating.trim(),
+    }
+
+    if (nextFilters.search) {
+      nextParams.set('search', nextFilters.search)
+    } else {
+      nextParams.delete('search')
+    }
+
+    if (nextFilters.maxPrice) {
+      nextParams.set('maxPrice', nextFilters.maxPrice)
+    } else {
+      nextParams.delete('maxPrice')
+    }
+
+    if (nextFilters.inStock === 'in-stock') {
+      nextParams.set('inStock', nextFilters.inStock)
+    } else {
+      nextParams.delete('inStock')
+    }
+
+    if (nextFilters.compatibility) {
+      nextParams.set('compatibility', nextFilters.compatibility)
+    } else {
+      nextParams.delete('compatibility')
+    }
+
+    if (nextFilters.energyRating) {
+      nextParams.set('energyRating', nextFilters.energyRating)
+    } else {
+      nextParams.delete('energyRating')
+    }
+
+    nextParams.set('page', '1')
+
+    setSearchParams(nextParams)
   }
 
   return (
