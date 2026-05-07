@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { setSearch } from '../../../store/catalogSlice'
+import { setFilters } from '../../../store/catalogSlice'
 import {
   ApplyButton,
   FilterGroup,
@@ -15,16 +15,23 @@ import {
 
 function Filters() {
   const dispatch = useAppDispatch()
-  const search = useAppSelector((state) => state.catalog.search)
+  const { search, maxPrice } = useAppSelector((state) => state.catalog)
   const [draftSearch, setDraftSearch] = useState(search)
+  const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice)
 
   useEffect(() => {
     setDraftSearch(search)
-  }, [search])
+    setDraftMaxPrice(maxPrice)
+  }, [maxPrice, search])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    dispatch(setSearch(draftSearch))
+    dispatch(
+      setFilters({
+        search: draftSearch,
+        maxPrice: draftMaxPrice,
+      }),
+    )
   }
 
   return (
@@ -44,7 +51,13 @@ function Filters() {
 
         <FilterGroup>
           <FilterLabel htmlFor="price">Цена</FilterLabel>
-          <FilterInput id="price" placeholder="до 500" />
+          <FilterInput
+            id="price"
+            placeholder="до 500"
+            inputMode="decimal"
+            value={draftMaxPrice}
+            onChange={(event) => setDraftMaxPrice(event.target.value)}
+          />
         </FilterGroup>
 
         <FilterGroup>

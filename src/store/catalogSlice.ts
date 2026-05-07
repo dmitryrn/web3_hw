@@ -10,6 +10,7 @@ type CatalogState = {
   page: number
   hasNextPage: boolean
   search: string
+  maxPrice: string
 }
 
 const initialState: CatalogState = {
@@ -19,6 +20,7 @@ const initialState: CatalogState = {
   page: 1,
   hasNextPage: false,
   search: '',
+  maxPrice: '',
 }
 
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
@@ -31,11 +33,12 @@ type FetchProductsResult = {
 type FetchProductsParams = {
   page: number
   search: string
+  maxPrice: string
 }
 
 export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProductsParams, { rejectValue: string }>(
   'catalog/fetchProducts',
-  async ({ page, search }, { rejectWithValue }) => {
+  async ({ page, search, maxPrice }, { rejectWithValue }) => {
     try {
       const offset = (page - 1) * CATALOG_PAGE_SIZE
       const params = new URLSearchParams({
@@ -45,6 +48,10 @@ export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProducts
 
       if (search.trim()) {
         params.set('search', search.trim())
+      }
+
+      if (maxPrice.trim()) {
+        params.set('max_price', maxPrice.trim())
       }
 
       const response = await fetch(`${apiBaseUrl}/products?${params.toString()}`)
@@ -72,8 +79,9 @@ const catalogSlice = createSlice({
     goToPage: (state, action: { payload: number }) => {
       state.page = Math.max(1, action.payload)
     },
-    setSearch: (state, action: { payload: string }) => {
-      state.search = action.payload.trim()
+    setFilters: (state, action: { payload: { search: string; maxPrice: string } }) => {
+      state.search = action.payload.search.trim()
+      state.maxPrice = action.payload.maxPrice.trim()
       state.page = 1
     },
   },
@@ -96,6 +104,6 @@ const catalogSlice = createSlice({
   },
 })
 
-export const { goToPage, setSearch } = catalogSlice.actions
+export const { goToPage, setFilters } = catalogSlice.actions
 
 export default catalogSlice.reducer
