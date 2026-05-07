@@ -59,6 +59,12 @@ export const QuantityControl = styled.div`
   }
 `
 
+export const AddToCartArea = styled.div`
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.35rem;
+`
+
 export const AddToCartButton = styled.button`
   min-height: 2.9rem;
   border: 1px solid #f3a847;
@@ -71,7 +77,6 @@ export const AddToCartButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  grid-column: 1 / -1;
   width: 100%;
   cursor: pointer;
 
@@ -85,6 +90,13 @@ export const AddToCartButton = styled.button`
   ${breakpoints.sm} {
     width: auto;
   }
+`
+
+export const CartFeedback = styled.div`
+  min-height: 1.25rem;
+  color: #007600;
+  font-size: 0.9rem;
+  line-height: 1.4;
 `
 
 export const QuantityButton = styled.button`
