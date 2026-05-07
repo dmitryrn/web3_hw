@@ -15,14 +15,16 @@ import {
 
 function Filters() {
   const dispatch = useAppDispatch()
-  const { search, maxPrice } = useAppSelector((state) => state.catalog)
+  const { search, maxPrice, inStock } = useAppSelector((state) => state.catalog)
   const [draftSearch, setDraftSearch] = useState(search)
   const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice)
+  const [draftInStock, setDraftInStock] = useState(inStock)
 
   useEffect(() => {
     setDraftSearch(search)
     setDraftMaxPrice(maxPrice)
-  }, [maxPrice, search])
+    setDraftInStock(inStock)
+  }, [inStock, maxPrice, search])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -30,6 +32,7 @@ function Filters() {
       setFilters({
         search: draftSearch,
         maxPrice: draftMaxPrice,
+        inStock: draftInStock,
       }),
     )
   }
@@ -62,10 +65,9 @@ function Filters() {
 
         <FilterGroup>
           <FilterLabel htmlFor="stock">Наличие</FilterLabel>
-          <FilterSelect id="stock" defaultValue="all">
+          <FilterSelect id="stock" value={draftInStock} onChange={(event) => setDraftInStock(event.target.value as typeof inStock)}>
             <option value="all">Все товары</option>
             <option value="in-stock">В наличии</option>
-            <option value="out-of-stock">Нет в наличии</option>
           </FilterSelect>
         </FilterGroup>
 
