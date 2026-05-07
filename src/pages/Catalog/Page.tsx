@@ -17,11 +17,11 @@ import {
 
 function CatalogPage() {
   const dispatch = useAppDispatch()
-  const { products, status, error, page, hasNextPage } = useAppSelector((state) => state.catalog)
+  const { products, status, error, page, hasNextPage, search } = useAppSelector((state) => state.catalog)
 
   useEffect(() => {
-    void dispatch(fetchProducts(page))
-  }, [dispatch, page])
+    void dispatch(fetchProducts({ page, search }))
+  }, [dispatch, page, search])
 
   return (
     <Page>

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Product } from '../models/product'
 
-export const CATALOG_PAGE_SIZE = 2
+export const CATALOG_PAGE_SIZE = 12
 
 type CatalogState = {
   products: Product[]
@@ -9,6 +9,7 @@ type CatalogState = {
   error: string | null
   page: number
   hasNextPage: boolean
+  search: string
 }
 
 const initialState: CatalogState = {
@@ -17,6 +18,7 @@ const initialState: CatalogState = {
   error: null,
   page: 1,
   hasNextPage: false,
+  search: '',
 }
 
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
@@ -26,14 +28,26 @@ type FetchProductsResult = {
   hasNextPage: boolean
 }
 
-export const fetchProducts = createAsyncThunk<FetchProductsResult, number, { rejectValue: string }>(
+type FetchProductsParams = {
+  page: number
+  search: string
+}
+
+export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProductsParams, { rejectValue: string }>(
   'catalog/fetchProducts',
-  async (page, { rejectWithValue }) => {
+  async ({ page, search }, { rejectWithValue }) => {
     try {
       const offset = (page - 1) * CATALOG_PAGE_SIZE
-      const response = await fetch(
-        `${apiBaseUrl}/products?limit=${CATALOG_PAGE_SIZE}&offset=${offset}`,
-      )
+      const params = new URLSearchParams({
+        limit: String(CATALOG_PAGE_SIZE),
+        offset: String(offset),
+      })
+
+      if (search.trim()) {
+        params.set('search', search.trim())
+      }
+
+      const response = await fetch(`${apiBaseUrl}/products?${params.toString()}`)
 
       if (!response.ok) {
         return rejectWithValue(`Failed to fetch products: ${response.status}`)
@@ -58,6 +72,10 @@ const catalogSlice = createSlice({
     goToPage: (state, action: { payload: number }) => {
       state.page = Math.max(1, action.payload)
     },
+    setSearch: (state, action: { payload: string }) => {
+      state.search = action.payload.trim()
+      state.page = 1
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -78,6 +96,6 @@ const catalogSlice = createSlice({
   },
 })
 
-export const { goToPage } = catalogSlice.actions
+export const { goToPage, setSearch } = catalogSlice.actions
 
 export default catalogSlice.reducer
