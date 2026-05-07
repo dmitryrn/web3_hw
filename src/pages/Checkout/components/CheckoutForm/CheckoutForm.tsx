@@ -57,6 +57,7 @@ function CheckoutForm({ total, disabled = false, error, isSubmitting, values, on
               placeholder="+7 (999) 123-45-67"
               value={values.customer_phone}
               onChange={(event) => onFieldChange('customer_phone', event.target.value)}
+              required
               disabled={isSubmitting || disabled}
             />
           </FieldGroup>
@@ -69,6 +70,7 @@ function CheckoutForm({ total, disabled = false, error, isSubmitting, values, on
               placeholder="Москва"
               value={values.customer_city}
               onChange={(event) => onFieldChange('customer_city', event.target.value)}
+              required
               disabled={isSubmitting || disabled}
             />
           </FieldGroup>
@@ -81,6 +83,7 @@ function CheckoutForm({ total, disabled = false, error, isSubmitting, values, on
               placeholder="Ленинградский проспект"
               value={values.customer_street}
               onChange={(event) => onFieldChange('customer_street', event.target.value)}
+              required
               disabled={isSubmitting || disabled}
             />
           </FieldGroup>
@@ -93,6 +96,7 @@ function CheckoutForm({ total, disabled = false, error, isSubmitting, values, on
               placeholder="15"
               value={values.customer_house}
               onChange={(event) => onFieldChange('customer_house', event.target.value)}
+              required
               disabled={isSubmitting || disabled}
             />
           </FieldGroup>
