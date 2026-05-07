@@ -17,13 +17,13 @@ import {
 
 function CatalogPage() {
   const dispatch = useAppDispatch()
-  const { products, status, error, page, hasNextPage, search, maxPrice, inStock } = useAppSelector(
+  const { products, status, error, page, hasNextPage, search, maxPrice, inStock, compatibility, energyRating } = useAppSelector(
     (state) => state.catalog,
   )
 
   useEffect(() => {
-    void dispatch(fetchProducts({ page, search, maxPrice, inStock }))
-  }, [dispatch, page, search, maxPrice, inStock])
+    void dispatch(fetchProducts({ page, search, maxPrice, inStock, compatibility, energyRating }))
+  }, [dispatch, page, search, maxPrice, inStock, compatibility, energyRating])
 
   return (
     <Page>

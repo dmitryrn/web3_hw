@@ -12,6 +12,8 @@ type CatalogState = {
   search: string
   maxPrice: string
   inStock: 'all' | 'in-stock'
+  compatibility: string
+  energyRating: string
 }
 
 const initialState: CatalogState = {
@@ -23,6 +25,8 @@ const initialState: CatalogState = {
   search: '',
   maxPrice: '',
   inStock: 'all',
+  compatibility: '',
+  energyRating: '',
 }
 
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
@@ -37,11 +41,13 @@ type FetchProductsParams = {
   search: string
   maxPrice: string
   inStock: 'all' | 'in-stock'
+  compatibility: string
+  energyRating: string
 }
 
 export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProductsParams, { rejectValue: string }>(
   'catalog/fetchProducts',
-  async ({ page, search, maxPrice, inStock }, { rejectWithValue }) => {
+  async ({ page, search, maxPrice, inStock, compatibility, energyRating }, { rejectWithValue }) => {
     try {
       const offset = (page - 1) * CATALOG_PAGE_SIZE
       const params = new URLSearchParams({
@@ -55,6 +61,14 @@ export const fetchProducts = createAsyncThunk<FetchProductsResult, FetchProducts
 
       if (maxPrice.trim()) {
         params.set('max_price', maxPrice.trim())
+      }
+
+      if (compatibility.trim()) {
+        params.set('compatibility', compatibility.trim())
+      }
+
+      if (energyRating.trim()) {
+        params.set('energy_rating', energyRating.trim())
       }
 
       if (inStock === 'in-stock') {
@@ -88,11 +102,21 @@ const catalogSlice = createSlice({
     },
     setFilters: (
       state,
-      action: { payload: { search: string; maxPrice: string; inStock: 'all' | 'in-stock' } },
+      action: {
+        payload: {
+          search: string
+          maxPrice: string
+          inStock: 'all' | 'in-stock'
+          compatibility: string
+          energyRating: string
+        }
+      },
     ) => {
       state.search = action.payload.search.trim()
       state.maxPrice = action.payload.maxPrice.trim()
       state.inStock = action.payload.inStock
+      state.compatibility = action.payload.compatibility.trim()
+      state.energyRating = action.payload.energyRating.trim()
       state.page = 1
     },
   },

@@ -15,16 +15,20 @@ import {
 
 function Filters() {
   const dispatch = useAppDispatch()
-  const { search, maxPrice, inStock } = useAppSelector((state) => state.catalog)
+  const { search, maxPrice, inStock, compatibility, energyRating } = useAppSelector((state) => state.catalog)
   const [draftSearch, setDraftSearch] = useState(search)
   const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice)
   const [draftInStock, setDraftInStock] = useState(inStock)
+  const [draftCompatibility, setDraftCompatibility] = useState(compatibility)
+  const [draftEnergyRating, setDraftEnergyRating] = useState(energyRating)
 
   useEffect(() => {
     setDraftSearch(search)
     setDraftMaxPrice(maxPrice)
     setDraftInStock(inStock)
-  }, [inStock, maxPrice, search])
+    setDraftCompatibility(compatibility)
+    setDraftEnergyRating(energyRating)
+  }, [compatibility, energyRating, inStock, maxPrice, search])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -33,6 +37,8 @@ function Filters() {
         search: draftSearch,
         maxPrice: draftMaxPrice,
         inStock: draftInStock,
+        compatibility: draftCompatibility,
+        energyRating: draftEnergyRating,
       }),
     )
   }
@@ -73,12 +79,22 @@ function Filters() {
 
         <FilterGroup>
           <FilterLabel htmlFor="compatibility">Совместимость</FilterLabel>
-          <FilterInput id="compatibility" placeholder="Например, H7" />
+          <FilterInput
+            id="compatibility"
+            placeholder="Например, H7"
+            value={draftCompatibility}
+            onChange={(event) => setDraftCompatibility(event.target.value)}
+          />
         </FilterGroup>
 
         <FilterGroup>
           <FilterLabel htmlFor="energy-rating">Энергетический класс</FilterLabel>
-          <FilterInput id="energy-rating" placeholder="Например, A+" />
+          <FilterInput
+            id="energy-rating"
+            placeholder="Например, A+"
+            value={draftEnergyRating}
+            onChange={(event) => setDraftEnergyRating(event.target.value)}
+          />
         </FilterGroup>
 
         <ApplyButton type="submit">Применить фильтры</ApplyButton>
