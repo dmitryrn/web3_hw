@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Product } from '../models/product'
 
-export const CATALOG_PAGE_SIZE = 12
+export const CATALOG_PAGE_SIZE = 2
 
 type CatalogState = {
   products: Product[]
@@ -55,13 +55,8 @@ const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
-    goToPreviousPage: (state) => {
-      state.page = Math.max(1, state.page - 1)
-    },
-    goToNextPage: (state) => {
-      if (state.hasNextPage) {
-        state.page += 1
-      }
+    goToPage: (state, action: { payload: number }) => {
+      state.page = Math.max(1, action.payload)
     },
   },
   extraReducers: (builder) => {
@@ -83,6 +78,6 @@ const catalogSlice = createSlice({
   },
 })
 
-export const { goToNextPage, goToPreviousPage } = catalogSlice.actions
+export const { goToPage } = catalogSlice.actions
 
 export default catalogSlice.reducer

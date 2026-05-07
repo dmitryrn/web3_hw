@@ -307,3 +307,9 @@ export const PageIndicator = styled.span<{ $active?: boolean }>`
   color: #111827;
   font-weight: ${({ $active }) => ($active ? 700 : 500)};
 `
+
+export const PaginationEllipsis = styled.span`
+  color: #6b7280;
+  font-size: 1.25rem;
+  line-height: 1;
+`
