@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Product } from '../models/product'
+import { apiBaseUrl } from './api'
 
 export const CATALOG_PAGE_SIZE = 12
 
@@ -28,8 +29,6 @@ const initialState: CatalogState = {
   compatibility: '',
   energyRating: '',
 }
-
-const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
 
 type FetchProductsResult = {
   products: Product[]

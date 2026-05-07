@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { cartProducts, catalogueProducts } from './mockData'
+import { cartProducts } from './mockData'
 import CartPage from './pages/Cart/Page'
 import CatalogPage from './pages/Catalog/Page'
 import CheckoutPage from './pages/Checkout/Page'
@@ -14,7 +14,7 @@ function App() {
         <main className="page-content">
           <Routes>
             <Route path="/" element={<CatalogPage />} />
-            <Route path="/products/:productId" element={<ProductPage products={catalogueProducts} />} />
+            <Route path="/products/:productId" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage products={cartProducts} />} />
             <Route path="/checkout" element={<CheckoutPage products={cartProducts} />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />

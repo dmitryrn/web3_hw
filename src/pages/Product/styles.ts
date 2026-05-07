@@ -58,6 +58,10 @@ export const DetailLabel = styled.span`
   font-weight: 600;
 `
 
+export const DetailValue = styled.span`
+  overflow-wrap: anywhere;
+`
+
 export const Description = styled.p`
   max-width: 960px;
   margin: 0 0 2rem;
@@ -90,7 +94,7 @@ export const BackButton = styled(Link)`
   justify-content: center;
 `
 
-export const ProductNotFound = styled.div`
+export const ProductMessage = styled.div`
   margin-bottom: 1rem;
   color: #111827;
   font-size: 1.5rem;
