@@ -1,4 +1,5 @@
 import Header from '../../components/Header/Component'
+import { useAppSelector } from '../../store/hooks'
 import {
   ActionButton,
   ConfirmationCard,
@@ -8,9 +9,9 @@ import {
   Page,
 } from './styles'
 
-const ORDER_NUMBER = '12671824687124687'
-
 function OrderConfirmationPage() {
+  const orderId = useAppSelector((state) => state.checkout.orderId)
+
   return (
     <Page>
       <Header />
@@ -18,7 +19,7 @@ function OrderConfirmationPage() {
       <Content>
         <ConfirmationCard>
           <Message>
-            Заказ <OrderNumber>#{ORDER_NUMBER}</OrderNumber> создан
+            Заказ {orderId ? <OrderNumber>#{orderId}</OrderNumber> : null} создан
           </Message>
           <Message>ожидайте звонка</Message>
 

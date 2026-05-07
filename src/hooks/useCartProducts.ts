@@ -12,9 +12,9 @@ function useCartProducts(): UseCartProductsResult {
   const items = useAppSelector((state) => state.cart.items)
   const [fetchedProducts, setFetchedProducts] = useState<Product[]>([])
   const [status, setStatus] = useState<'idle' | 'loading' | 'succeeded' | 'failed'>('idle')
-  const productIds = items.map((item) => item.productId)
+  const productIds = items.map((item) => item.product_id)
   const productIdsKey = productIds.join(',')
-  const quantitiesByProductId = new Map(items.map((item) => [item.productId, item.quantity]))
+  const quantitiesByProductId = new Map(items.map((item) => [item.product_id, item.quantity]))
   const products = fetchedProducts.map((product) => ({
     product,
     quantity: quantitiesByProductId.get(product.id) ?? 1,

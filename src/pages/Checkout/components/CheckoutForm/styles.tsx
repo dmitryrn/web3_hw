@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { breakpoints } from '../../../../breakpoints'
 
@@ -75,6 +74,11 @@ export const FormGrid = styled.div`
   }
 `
 
+export const Form = styled.form`
+  display: grid;
+  gap: 1rem;
+`
+
 export const FieldGroup = styled.div`
   display: grid;
   gap: 0.45rem;
@@ -108,7 +112,13 @@ export const Field = styled.input`
   }
 `
 
-export const CheckoutButton = styled(Link)`
+export const ErrorMessage = styled.p`
+  margin: 0;
+  color: #b91c1c;
+  font-size: 0.95rem;
+`
+
+export const CheckoutButton = styled.button`
   width: 100%;
   min-height: 2.9rem;
   border: 1px solid #f3a847;
@@ -116,8 +126,12 @@ export const CheckoutButton = styled(Link)`
   background: #ffd814;
   color: #111827;
   font-weight: 600;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
 `

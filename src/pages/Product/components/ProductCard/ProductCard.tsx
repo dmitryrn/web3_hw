@@ -41,7 +41,7 @@ function ProductCard({ product, name, price, stock }: ProductCardProps) {
       return
     }
 
-    dispatch(addToCart({ productId: product.id, quantity }))
+    dispatch(addToCart({ product_id: product.id, quantity }))
   }
 
   return (

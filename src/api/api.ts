@@ -1,3 +1,5 @@
+import type { CreateOrderPayload } from './models'
+
 export type ProductsParams = {
   limit: number
   offset: number
@@ -10,6 +12,7 @@ export type ProductsParams = {
 
 export class Api {
   private readonly baseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
+  private readonly orderBaseUrl = (import.meta.env.VITE_ORDER_API_BASE_URL ?? 'http://localhost:8001').replace(/\/$/, '')
 
   productById(productId: number, abortController?: AbortController) {
     return fetch(`${this.baseUrl}/products/${productId}`, {
@@ -44,6 +47,17 @@ export class Api {
     }
 
     return fetch(`${this.baseUrl}/products?${searchParams.toString()}`, {
+      signal: abortController?.signal,
+    })
+  }
+
+  createOrder(payload: CreateOrderPayload, abortController?: AbortController) {
+    return fetch(`${this.orderBaseUrl}/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
       signal: abortController?.signal,
     })
   }
