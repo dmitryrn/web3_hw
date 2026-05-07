@@ -157,6 +157,11 @@ export const QuantityAction = styled.button`
   font-weight: 700;
   cursor: pointer;
 
+  &:disabled {
+    cursor: not-allowed;
+    color: #9ca3af;
+  }
+
   &:first-child {
     border-right: 1px solid #cbd5e1;
   }

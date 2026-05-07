@@ -64,7 +64,7 @@ function ProductPage() {
       <Content>
         <ProductLayout>
           <Carousel imageUrls={product.images.map((image) => image.image_url)} productName={product.name} />
-          <ProductCard name={product.name} price={product.price} stock={product.stock} />
+          <ProductCard product={product} name={product.name} price={product.price} stock={product.stock} />
         </ProductLayout>
 
         <MetaList>

@@ -1,4 +1,6 @@
 import type { CartProduct } from '../../models/product'
+import { useAppDispatch } from '../../store/hooks'
+import { decrementCartItem, incrementCartItem, removeFromCart } from '../../store/cartSlice'
 import {
   ImagePlaceholder,
   ItemCard,
@@ -29,7 +31,20 @@ function OrderProductItem({
   showQuantityControls = false,
   showRemoveButton = false,
 }: OrderProductItemProps) {
+  const dispatch = useAppDispatch()
   const firstImage = product.product.images[0]?.image_url
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(product.product.id))
+  }
+
+  const handleDecreaseQuantity = () => {
+    dispatch(decrementCartItem(product.product.id))
+  }
+
+  const handleIncreaseQuantity = () => {
+    dispatch(incrementCartItem(product.product.id))
+  }
 
   return (
     <ItemCard>
@@ -42,7 +57,11 @@ function OrderProductItem({
       <ItemDetails $showQuantityControls={showQuantityControls}>
         <ItemMeta>
           <ProductName>{product.product.name}</ProductName>
-          {showRemoveButton ? <RemoveButton type="button">Удалить</RemoveButton> : null}
+          {showRemoveButton ? (
+            <RemoveButton type="button" onClick={handleRemove}>
+              Удалить
+            </RemoveButton>
+          ) : null}
           {!showQuantityControls ? (
             <QuantityRow>
               <QuantityLabel>Количество</QuantityLabel>
@@ -54,9 +73,13 @@ function OrderProductItem({
 
         {showQuantityControls ? (
           <QuantityBox>
-            <QuantityAction type="button">-</QuantityAction>
+            <QuantityAction type="button" onClick={handleDecreaseQuantity} disabled={product.quantity <= 1}>
+              -
+            </QuantityAction>
             <QuantityValue>{product.quantity}</QuantityValue>
-            <QuantityAction type="button">+</QuantityAction>
+            <QuantityAction type="button" onClick={handleIncreaseQuantity}>
+              +
+            </QuantityAction>
           </QuantityBox>
         ) : null}
 

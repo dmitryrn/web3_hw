@@ -1,42 +1,33 @@
-import type { CartProduct } from '../../models/product'
 import { useNavigate } from 'react-router-dom'
+import CartProductsList from '../../components/CartProductsList/Component'
 import Header from '../../components/Header/Component'
-import OrderProductItem from '../../components/OrderProductItem/Component'
+import useCartProducts from '../../hooks/useCartProducts'
 import {
   BackButton,
-  CartList,
   Content,
   OrderButton,
   Page,
   Sidebar,
 } from './styles'
 
-type CartPageProps = {
-  products: CartProduct[]
-}
-
-function CartPage({ products }: CartPageProps) {
+function CartPage() {
   const navigate = useNavigate()
+  const { products, status } = useCartProducts()
 
   return (
     <Page>
       <Header />
 
       <Content>
-        <CartList>
-          {products.map((product) => (
-            <OrderProductItem
-              key={product.product.id}
-              product={product}
-              productLink={`/products/${product.product.id}`}
-              showQuantityControls
-              showRemoveButton
-            />
-          ))}
-        </CartList>
+        <CartProductsList
+          products={products}
+          status={status}
+          showQuantityControls
+          showRemoveButton
+        />
 
         <Sidebar>
-          <OrderButton type="button" onClick={() => navigate('/checkout')}>
+          <OrderButton type="button" onClick={() => navigate('/checkout')} disabled={products.length === 0 || status === 'loading'}>
             Создать заказ
           </OrderButton>
           <BackButton to="/">Назад</BackButton>

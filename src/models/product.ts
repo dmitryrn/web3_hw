@@ -23,3 +23,8 @@ export type CartProduct = {
   product: Product
   quantity: number
 }
+
+export type CartItem = {
+  productId: number
+  quantity: number
+}

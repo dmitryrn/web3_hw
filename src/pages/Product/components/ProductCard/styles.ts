@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { breakpoints } from '../../../../breakpoints'
 
@@ -60,7 +59,7 @@ export const QuantityControl = styled.div`
   }
 `
 
-export const AddToCartButton = styled(Link)`
+export const AddToCartButton = styled.button`
   min-height: 2.9rem;
   border: 1px solid #f3a847;
   border-radius: 999px;
@@ -74,6 +73,14 @@ export const AddToCartButton = styled(Link)`
   justify-content: center;
   grid-column: 1 / -1;
   width: 100%;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: #d1d5db;
+    background: #e5e7eb;
+    color: #6b7280;
+  }
 
   ${breakpoints.sm} {
     width: auto;
@@ -89,6 +96,12 @@ export const QuantityButton = styled.button`
   color: #111827;
   font-size: 1.25rem;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    color: #9ca3af;
+    background: #f8fafc;
+  }
 
   ${breakpoints.sm} {
     width: 2.75rem;

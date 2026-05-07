@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { cartProducts } from './mockData'
 import CartPage from './pages/Cart/Page'
 import CatalogPage from './pages/Catalog/Page'
 import CheckoutPage from './pages/Checkout/Page'
@@ -15,8 +14,8 @@ function App() {
           <Routes>
             <Route path="/" element={<CatalogPage />} />
             <Route path="/products/:productId" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage products={cartProducts} />} />
-            <Route path="/checkout" element={<CheckoutPage products={cartProducts} />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
           </Routes>
         </main>

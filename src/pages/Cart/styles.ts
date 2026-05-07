@@ -41,16 +41,6 @@ export const Content = styled.div`
   }
 `
 
-export const CartList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-
-  ${breakpoints.md} {
-    gap: 1rem;
-  }
-`
-
 export const Sidebar = styled.aside`
   width: 100%;
   padding: 1rem;
@@ -83,6 +73,13 @@ export const OrderButton = styled.button`
   color: #111827;
   font-weight: 600;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: #d1d5db;
+    background: #e5e7eb;
+    color: #6b7280;
+  }
 `
 
 export const BackButton = styled(Link)`

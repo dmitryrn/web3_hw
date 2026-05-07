@@ -38,16 +38,6 @@ export const Content = styled.div`
   }
 `
 
-export const OrderList = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-
-  ${breakpoints.md} {
-    gap: 1rem;
-  }
-`
-
 export const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
