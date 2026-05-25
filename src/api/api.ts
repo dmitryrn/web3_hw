@@ -11,8 +11,7 @@ export type ProductsParams = {
 }
 
 export class Api {
-  private readonly baseUrl = (import.meta.env.VITE_PRODUCT_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
-  private readonly orderBaseUrl = (import.meta.env.VITE_ORDER_API_BASE_URL ?? 'http://localhost:8001').replace(/\/$/, '')
+  private readonly baseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080').replace(/\/$/, '')
 
   productById(productId: number, abortController?: AbortController) {
     return fetch(`${this.baseUrl}/products/${productId}`, {
@@ -52,7 +51,7 @@ export class Api {
   }
 
   createOrder(payload: CreateOrderPayload, abortController?: AbortController) {
-    return fetch(`${this.orderBaseUrl}/orders`, {
+    return fetch(`${this.baseUrl}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
