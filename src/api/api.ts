@@ -11,7 +11,7 @@ export type ProductsParams = {
 }
 
 export class Api {
-  private readonly baseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
+  private readonly baseUrl = (import.meta.env.VITE_PRODUCT_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
   private readonly orderBaseUrl = (import.meta.env.VITE_ORDER_API_BASE_URL ?? 'http://localhost:8001').replace(/\/$/, '')
 
   productById(productId: number, abortController?: AbortController) {
